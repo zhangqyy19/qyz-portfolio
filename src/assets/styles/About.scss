@@ -1,0 +1,57 @@
+/* Override the old .about-section from main.scss */
+section.about-section {
+  background-color: #0d1116 !important;
+  background-image: none !important;         /* remove the purple wave */
+  padding: 5% 10% !important;
+  min-height: auto !important;
+
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  svg { color: white; }
+}
+
+/* Match the skills grid exactly */
+section.about-section .about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 50px;
+}
+
+section.about-section .about-grid .about-item {
+  align-items: center;
+  text-align: left;
+
+  h2 {
+    font-size: 1.5rem;   /* matches card headings scale */
+    color: white;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    color: white;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+}
+
+/* responsive to mirror skills */
+@media (max-width: 768px) {
+  section.about-section {
+    display: block;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+  section.about-section .about-grid { display: initial; }
+  section.about-section .about-grid .about-item { padding-bottom: 5%; }
+}
+
+.about-section h2 {
+  font-size: 2.5rem;   /* same as Expertise heading */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;        /* or #5000ca if you use accent color */
+}
+
