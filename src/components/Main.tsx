@@ -14,25 +14,56 @@ function Main() {
     "Lifelong Learner"
   ];
 
-  const [index, setIndex] = useState(0);
+  //fade in fade out
+  /*const [index, setIndex] = useState(0);
   const [fadeIn, setFadeIn] = useState(true);
 
   useEffect(() => {
-    const holdMs = 1500;    // visible time
-    const fadeMs = 500;     // must match CSS transition
+    const holdMs = 1500;    
+    const fadeMs = 500;     
 
     const holdTimer = setTimeout(() => {
-      setFadeIn(false);                 // start fade out
+      setFadeIn(false);                 
       const swapTimer = setTimeout(() => {
-        setIndex((i) => (i + 1) % titles.length); // swap word
-        setFadeIn(true);               // fade in
+        setIndex((i) => (i + 1) % titles.length); 
+        setFadeIn(true);               
       }, fadeMs);
 
       return () => clearTimeout(swapTimer);
     }, holdMs);
 
     return () => clearTimeout(holdTimer);
-  }, [index, titles.length]);
+  }, [index, titles.length]);*/
+
+  //typewriter
+  const [index, setIndex] = useState(0);         
+  const [text, setText] = useState("");          
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(100); 
+
+  useEffect(() => {
+    const current = titles[index % titles.length];
+
+    if (!isDeleting && text === current) {
+      const pause = setTimeout(() => setIsDeleting(true), 2000);
+      return () => clearTimeout(pause);
+    }
+
+    if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setIndex((prev) => (prev + 1) % titles.length);
+    }
+
+    const timer = setTimeout(() => {
+      const nextText = isDeleting
+        ? current.slice(0, text.length - 1)
+        : current.slice(0, text.length + 1);
+      setText(nextText);
+      setTypingSpeed(isDeleting ? 50 : 100); 
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, typingSpeed, titles, index]);
 
 
   return (
@@ -48,7 +79,10 @@ function Main() {
             <a href="https://www.linkedin.com/in/qian-yun-zhang-555291346/" target="_blank" rel="noreferrer"><ContactPageIcon/></a>
           </div>
           <h1>Qian Yun Zhang</h1>
-          <p className={`fade-text ${fadeIn ? "fade-in" : "fade-out"}`}>{titles[index]}</p>
+          <p className="typewriter">
+            {text}
+            <span className="cursor" />
+          </p>
 
           <div className="mobile_social_icons">
             <a href="https://github.com/zhangqyy19" target="_blank" rel="noreferrer"><GitHubIcon/></a>

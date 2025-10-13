@@ -165,3 +165,26 @@
 .fade-out {
   opacity: 0;
 }
+
+/* Typing animation styles */
+.typewriter {
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  color: white; 
+}
+
+.cursor {
+  display: inline-block;
+  width: 1ch;
+  border-right: 2px solid currentColor;
+  animation: blink 0.9s step-end infinite;
+  transform: translateY(3px); 
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: currentColor; }
+}
