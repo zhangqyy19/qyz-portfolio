@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import '../assets/styles/Contact.scss';
-//import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -27,27 +27,42 @@ function Contact() {
 
     /* Uncomment below if you want to enable the emailJS */
 
-    //  if (name !== '' && email !== '' && message !== '') {
-    //    var templateParams = {
-    //      name: name,
-    //      email: email,
-    //      message: message
-    //    };
+     if (name !== '' && email !== '' && message !== '') {
+       var templateParams = {
+         name: name,
+         email: email,
+         message: message
+       };
 
-    //    console.log(templateParams);
-    //    emailjs.send('service_e4br5rl', 'template_7i9c45x', templateParams, 'public_W9Duj3vaj8ND9MYG').then(
-    //      (response) => {
-    //        console.log('SUCCESS!', response.status, response.text);
-    //      },
-    //      (error) => {
-    //        console.log('FAILED...', error);
-    //      },
-    //    );
-    //    setName('');
-    //    setEmail('');
-    //    setMessage('');
-    //  }
+       console.log(templateParams);
+       emailjs.send('service_e4br5rl', 'template_7i9c45x', templateParams, 'public_W9Duj3vaj8ND9MYG').then(
+         (response) => {
+           console.log('SUCCESS!', response.status, response.text);
+         },
+         (error) => {
+           console.log('FAILED...', error);
+         },
+       );
+       setName('');
+       setEmail('');
+       setMessage('');
+     }
   };
+
+
+  const fieldSX = {
+    // input text color
+    '& .MuiInputBase-input': { color: '#111' },
+    // label color
+    '& .MuiInputLabel-root': { color: '#333' },
+    // focused label color
+    '& .MuiInputLabel-root.Mui-focused': { color: '#111' },
+    // outline colors
+    '& .MuiOutlinedInput-root fieldset': { borderColor: '#999' },
+    '& .MuiOutlinedInput-root:hover fieldset': { borderColor: '#666' },
+    '& .MuiOutlinedInput-root.Mui-focused fieldset': { borderColor: '#111' },
+  };
+
 
   return (
     <div id="contact">
