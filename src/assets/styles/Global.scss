@@ -1,0 +1,37 @@
+/* ---------- Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lora:wght@400;600;700&display=swap');
+
+/* ---------- Global text (no backgrounds here) ---------- */
+:root {
+  --font-body: 'Lora', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --color-accent: #5000ca;
+}
+
+/* Base text */
+html, body {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings also use Lora (keeps it cohesive & elegant) */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin: 0 0 0.5em 0;
+}
+
+/* Links & emphasis */
+a { text-decoration: none; }
+a:hover, strong { color: var(--color-accent); }
+
+/* Typewriter line only */
+.typewriter {
+  font-family: var(--font-mono);
+  font-weight: 500;
+}

@@ -1,6 +1,7 @@
 section.about-section {
-  background-color: #0d1116;                 
-  background-image: url("../images/bg-dark.png"); 
+  background-color: #0d1116;   
+  background-image: none;               
+  //background-image: url("../images/bg-dark.png"); 
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -18,7 +19,8 @@ section.about-section {
 
 .light-mode section.about-section {
   background-color: #f8f9fa;
-  background-image: url("../images/bg-light.png"); 
+  background-image: none; 
+  //background-image: url("../images/bg-light.png"); 
 }
 
 section.about-section .about-grid {
@@ -58,3 +60,16 @@ section.about-section .about-grid .about-item {
   section.about-section .about-grid { display: initial; }
   section.about-section .about-grid .about-item { padding-bottom: 5%; }
 }
+
+/* Make About match Expertise exactly in dark mode */
+.dark-mode section.about-section {
+  background-color: #0d1116 !important;
+  background-image: none !important;
+}
+
+/* Keep About flat in light mode too (if you want flat vs pattern) */
+.light-mode section.about-section {
+  background-color: #f8f9fa !important;
+  background-image: none !important;
+}
+

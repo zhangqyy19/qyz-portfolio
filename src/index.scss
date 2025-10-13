@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -153,4 +155,157 @@ p, a, h1, h2, h3, h4, h5, label, button {
     }
   }
 }
+
+
+/* Navigation text styling */
+.navigation-bar,
+.navigation-bar a,
+.navigation-bar button,
+.navigation-bar span {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;        /* slightly bolder for legibility */
+  letter-spacing: 0.05em;  /* subtle spacing = modern look */
+  //text-transform: uppercase; all uppercase
+  font-size: 0.95rem;
+}
+
+/* Navigation hover color */
+.navigation-bar a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.navigation-bar a:hover,
+.navigation-bar a:focus {
+  color: #5000ca !important;
+}
+.navigation-bar a {
+  position: relative;
+}
+
+.navigation-bar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #5000ca;
+  transition: width 0.3s ease;
+}
+
+.navigation-bar a:hover::after {
+  width: 100%;
+}
+
+/* ---------------- NAVIGATION STYLE ---------------- */
+/*
+.navigation-bar,
+.navigation-bar button,
+.navigation-bar a,
+.navigation-bar span {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  //text-transform: uppercase;
+  background: transparent;
+}
+
+//hover colors
+.navigation-bar .MuiButton-root {
+  color: inherit;
+  background: transparent;
+  transition: color 0.25s ease;
+}
+
+.navigation-bar .MuiButton-root:hover,
+.navigation-bar .MuiButton-root:focus-visible {
+  color: #5000ca !important; 
+  background: transparent;
+}
+
+.navigation-bar-responsive .MuiListItemButton-root:hover .MuiListItemText-primary {
+  color: #5000ca !important;
+}
+*/
+
+/* ---------- NAVIGATION STYLING NO. 2---------- */
+
+#navigation.MuiAppBar-root {
+  background-color: #0d1116 !important; 
+  box-shadow: none;
+  transition: background-color 0.3s ease;
+}
+
+.light-mode #navigation.MuiAppBar-root {
+  background-color: #f8f9fa !important;
+  box-shadow: none;
+}
+
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-bar .MuiButton-root {
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-weight: 600;
+  //text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  background: transparent;
+  transition: color 0.3s ease;
+  margin: 0 6px;
+}
+
+.navigation-bar .MuiButton-root::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #5000ca;
+  opacity: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.navigation-bar .MuiButton-root:hover {
+  color: #5000ca;
+}
+
+.navigation-bar .MuiButton-root:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+
+/* ---------- LIGHT MODE ---------- */
+.light-mode .navigation-bar .MuiButton-root {
+  color: #0d1116;
+}
+
+.light-mode .navigation-bar .MuiButton-root::after {
+  background-color: #444; 
+}
+
+.light-mode .navigation-bar .MuiButton-root:hover {
+  color: #444;
+}
+
+.navigation-bar-responsive .MuiListItemButton-root:hover .MuiListItemText-primary {
+  color: #5000ca !important;
+}
+
+
+
+
 

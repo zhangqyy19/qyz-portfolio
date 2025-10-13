@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+
 .dark-mode .about-section {
     background-color: rgba(0, 0, 0, 0.2);
 }
@@ -168,12 +170,13 @@
 
 /* Typing animation styles */
 .typewriter {
+  font-family: 'IBM Plex Mono', monospace;  
   font-weight: 600;
   font-size: 1.5rem;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
-  color: white; 
+  color: white;  
 }
 
 .cursor {
@@ -181,10 +184,15 @@
   width: 1ch;
   border-right: 2px solid currentColor;
   animation: blink 0.9s step-end infinite;
-  transform: translateY(3px); 
+  transform: translateY(3px);
 }
 
 @keyframes blink {
   0%, 100% { border-color: transparent; }
   50% { border-color: currentColor; }
+}
+
+.typewriter {
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 6px rgba(80,0,202,0.2);
 }
