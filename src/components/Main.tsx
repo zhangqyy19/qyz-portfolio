@@ -76,7 +76,7 @@ function Main() {
           <div className="social_icons">
             <a href="https://github.com/zhangqyy19" target="_blank" rel="noreferrer"><GitHubIcon/></a>
             <a href="https://www.linkedin.com/in/qian-yun-zhang-555291346/" target="_blank" rel="noreferrer"><LinkedInIcon/></a>
-            <a href="https://www.linkedin.com/in/qian-yun-zhang-555291346/" target="_blank" rel="noreferrer"><ContactPageIcon/></a>
+            <a href="https://drive.google.com/file/d/1rqkPdjCW8nHiPhDNyckBRZae7zyE7-an/view?usp=sharing" target="_blank" rel="noreferrer"><ContactPageIcon/></a>
           </div>
           <h1>Qian Yun Zhang</h1>
           <p className="typewriter">

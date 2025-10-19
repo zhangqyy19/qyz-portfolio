@@ -46,3 +46,112 @@ form {
   width: 100% !important;
   margin-bottom: 15px !important;
 }
+
+
+/* ================== CONTACT FORM — MUI TextField FIXES ================== */
+
+/* 1) Make labels always "shrunk" (no jump) and remove the animation */
+.contact-form .MuiFormLabel-root {
+  /* Shrunken position used by MUI Outlined variant */
+  transform: translate(14px, -9px) scale(0.75) !important;
+  transform-origin: top left;
+  transition: none !important; /* stop the slide animation */
+  pointer-events: none;         /* keep clicks going to the field */
+}
+
+/* 2) Input text & label colors (DARK MODE default) */
+.contact-form .MuiInputBase-input { color: #fff; }
+.contact-form .MuiFormLabel-root { color: #bbb; }
+.contact-form .MuiFormLabel-root.Mui-focused { color: #fff; }
+.contact-form .MuiFormHelperText-root { color: #aaa; }
+
+/* 3) Outlined borders + focus color */
+.contact-form .MuiOutlinedInput-notchedOutline { border-color: #666; }
+.contact-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline { border-color: #888; }
+.contact-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline { border-color: #5000ca; }
+
+/* 4) Field backgrounds (optional; comment out if you prefer transparent) */
+.contact-form .MuiOutlinedInput-root {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* 5) Placeholder color (in case you rely on placeholders) */
+.contact-form .MuiInputBase-input::placeholder { color: #9aa0a6; opacity: 1; }
+
+/* ---------------- LIGHT MODE OVERRIDES ---------------- */
+.light-mode .contact-form .MuiInputBase-input { color: #0d1116; }
+.light-mode .contact-form .MuiFormLabel-root { color: #555; }
+.light-mode .contact-form .MuiFormLabel-root.Mui-focused { color: #222; }
+.light-mode .contact-form .MuiFormHelperText-root { color: #555; }
+
+.light-mode .contact-form .MuiOutlinedInput-notchedOutline { border-color: #bbb; }
+.light-mode .contact-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline { border-color: #888; }
+.light-mode .contact-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline { border-color: #5000ca; }
+
+.light-mode .contact-form .MuiOutlinedInput-root {
+  background-color: #fff;
+}
+
+/* 6) Remove the old white box behind the outline if you don't want it */
+.contact-form fieldset {
+  background: transparent !important; 
+}
+
+
+
+/* ==================== LABEL + BOX COLOR MATCH FIX ==================== */
+/* DARK MODE */
+.contact-form .MuiOutlinedInput-root {
+  background-color: #0d1116;   /* field bg */
+  border-radius: 6px;
+}
+.contact-form .MuiFormLabel-root {
+  background-color: #0d1116;   /* label bg matches field */
+  padding: 0 6px;
+  border-radius: 4px;
+  color: #bbb;
+}
+
+/* LIGHT MODE */
+.light-mode .contact-form .MuiOutlinedInput-root {
+  background-color: #f8f9fa;   /* field bg */
+}
+.light-mode .contact-form .MuiFormLabel-root {
+  background-color: #f8f9fa;   /* label bg matches field */
+  color: #444;
+}
+
+/* Borders / focus */
+.contact-form .MuiOutlinedInput-notchedOutline { border-color: #333; }
+.contact-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline { border-color: #666; }
+.contact-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline { border-color: #5000ca; }
+.light-mode .contact-form .MuiOutlinedInput-notchedOutline { border-color: #ccc; }
+.light-mode .contact-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline { border-color: #999; }
+.light-mode .contact-form .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline { border-color: #5000ca; }
+
+/* Text colors + caret (readable in both modes) */
+.contact-form .MuiInputBase-input { color: #fff; caret-color: #fff; }
+.light-mode .contact-form .MuiInputBase-input { color: #0d1116; caret-color: #0d1116; }
+
+/* === Disable Chrome autofill repaint (keep your color in both modes) === */
+.contact-form input:-webkit-autofill,
+.contact-form textarea:-webkit-autofill,
+.contact-form select:-webkit-autofill {
+  /* fill the field with *your* bg color (light) */
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #0d1116 !important;
+  transition: background-color 9999s ease-out 0s !important;
+}
+
+/* dark-mode autofill */
+.dark-mode .contact-form input:-webkit-autofill,
+.dark-mode .contact-form textarea:-webkit-autofill,
+.dark-mode .contact-form select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #0d1116 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* ensure the label sits above the outline cleanly */
+.contact-form .MuiFormLabel-root {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

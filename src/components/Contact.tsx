@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
 
 function Contact() {
 
@@ -15,10 +16,14 @@ function Contact() {
   const [nameError, setNameError] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<boolean>(false);
   const [messageError, setMessageError] = useState<boolean>(false);
+  
+  const [status, setStatus] = useState<'idle'|'success'|'error'>('idle'); 
+  const [statusMsg, setStatusMsg] = useState('');                         
 
-  const form = useRef();
+  const form = useRef<HTMLFormElement | null>(null);
 
-  const sendEmail = (e: any) => {
+  
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => { 
     e.preventDefault();
 
     setNameError(name === '');
@@ -28,21 +33,36 @@ function Contact() {
     /* Uncomment below if you want to enable the emailJS */
 
      if (name !== '' && email !== '' && message !== '') {
-       var templateParams = {
+       const templateParams = {
          name: name,
          email: email,
          message: message
        };
-
+      
+       setStatus('idle');                                        
        console.log(templateParams);
-       emailjs.send('service_e4br5rl', 'template_7i9c45x', templateParams, 'public_W9Duj3vaj8ND9MYG').then(
+
+       emailjs.send(
+        'service_e4br5rl', 
+        'template_g3ftqbm', 
+        templateParams, 
+        'public_W9Duj3vaj8ND9MYG'
+      )
+      .then(
          (response) => {
-           console.log('SUCCESS!', response.status, response.text);
+          console.log('SUCCESS!', response.status, response.text);
+          setStatus('success');                                
+          setStatusMsg('Message sent successfully! I’ll get back to you soon.');
+          setName('');
+          setEmail('');
+          setMessage('');
          },
          (error) => {
            console.log('FAILED...', error);
+           setStatus('error');                                  
+           setStatusMsg('Something went wrong sending your message. Please try again.');
          },
-       );
+      );
        setName('');
        setEmail('');
        setMessage('');
@@ -76,7 +96,11 @@ function Contact() {
             noValidate
             autoComplete="off"
             className='contact-form'
+            onSubmit={sendEmail} 
           >
+            {status === 'success' && <Alert severity="success" sx={{ mb: 2 }}>{statusMsg}</Alert>}
+            {status === 'error'   && <Alert severity="error"   sx={{ mb: 2 }}>{statusMsg}</Alert>}
+
             <div className='form-flex'>
               <TextField
                 required
@@ -118,7 +142,11 @@ function Contact() {
               error={messageError}
               helperText={messageError ? "Please enter the message" : ""}
             />
-            <Button variant="contained" endIcon={<SendIcon />} onClick={sendEmail}>
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              type="submit"                                        
+            >
               Send
             </Button>
           </Box>
