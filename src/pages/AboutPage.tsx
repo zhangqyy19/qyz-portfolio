@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -6,6 +6,43 @@ import profilePic from "../images/circprof.png";
 import '../styles/AboutPage.scss';
 
 const AboutPage: React.FC = () => {
+  const titles = [
+    "Software Engineer",
+    "Web Developer",
+    "UI/UX Builder",
+    "Tech Explorer",
+    "Lifelong Learner"
+  ];
+
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(100);
+
+  useEffect(() => {
+    const current = titles[index % titles.length];
+
+    if (!isDeleting && text === current) {
+      const pause = setTimeout(() => setIsDeleting(true), 2000);
+      return () => clearTimeout(pause);
+    }
+
+    if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setIndex((prev) => (prev + 1) % titles.length);
+    }
+
+    const timer = setTimeout(() => {
+      const nextText = isDeleting
+        ? current.slice(0, text.length - 1)
+        : current.slice(0, text.length + 1);
+      setText(nextText);
+      setTypingSpeed(isDeleting ? 50 : 100);
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, typingSpeed, titles, index]);
+
   return (
     <div className="page-wrapper">
       <div className="page-content about-page fade-in-up">
@@ -13,7 +50,10 @@ const AboutPage: React.FC = () => {
         <div className="hero-section">
           <div className="hero-text">
             <h1>Qian Yun Zhang</h1>
-            <p className="subtitle">Software Engineer · Web Developer · Tech Explorer</p>
+            <p className="subtitle typewriter">
+              {text}
+              <span className="cursor" />
+            </p>
             <p className="short-bio">
               I'm a passionate Full Stack Engineer who loves building intuitive, 
               performant web applications and exploring new technologies. My work 
