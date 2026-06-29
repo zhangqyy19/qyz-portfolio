@@ -16,16 +16,20 @@ function App() {
 
   const toggleTheme = () => {
     if (activeTheme) {
-      setActiveTheme(null); // toggle off
+      setActiveTheme(null);
     } else if (weather) {
-      setActiveTheme(weather.weatherType); // toggle on
+      setActiveTheme(weather.weatherType);
     }
+  };
+
+  const setTheme = (theme: WeatherType | null) => {
+    setActiveTheme(theme);
   };
 
   const weatherType = weather?.weatherType || null;
 
   return (
-    <WeatherThemeContext.Provider value={{ activeTheme, toggleTheme, weatherType }}>
+    <WeatherThemeContext.Provider value={{ activeTheme, toggleTheme, setTheme, weatherType }}>
       <Router>
         <div className={`app-container ${activeTheme ? `theme-${activeTheme}` : ''}`}>
           <Navbar />

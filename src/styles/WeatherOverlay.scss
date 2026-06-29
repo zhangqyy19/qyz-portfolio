@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-// === SNOW ===
+// === SNOW (more dense, bigger flakes) ===
 .snow-container {
   width: 100%;
   height: 100%;
@@ -18,26 +18,28 @@
 
 .snowflake {
   position: absolute;
-  top: -20px;
-  color: rgba(255, 255, 255, 0.9);
+  top: -30px;
+  color: rgba(255, 255, 255, 0.95);
   animation: snowfall linear infinite;
-  text-shadow: 0 0 4px rgba(200, 220, 255, 0.8);
+  text-shadow: 0 0 6px rgba(180, 210, 255, 0.9), 0 0 12px rgba(180, 210, 255, 0.4);
 }
 
 @keyframes snowfall {
   0% {
-    transform: translateY(-10px) rotate(0deg);
+    transform: translateY(-10px) rotate(0deg) translateX(0);
     opacity: 1;
   }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(20px);
+  }
   100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0.6;
+    transform: translateY(100vh) rotate(360deg) translateX(-10px);
+    opacity: 0.7;
   }
 }
 
-// === RAIN ===
-.rain-container,
-.storm-container {
+// === RAIN (more dense, faster, more visible) ===
+.rain-container {
   width: 100%;
   height: 100%;
   position: relative;
@@ -45,48 +47,107 @@
 
 .raindrop {
   position: absolute;
-  top: -20px;
-  width: 2px;
-  height: 18px;
-  background: linear-gradient(transparent, rgba(150, 200, 255, 0.6));
-  border-radius: 0 0 2px 2px;
+  top: -30px;
+  width: 2.5px;
+  height: 22px;
+  background: linear-gradient(transparent, rgba(100, 160, 255, 0.8));
+  border-radius: 0 0 3px 3px;
   animation: rainfall linear infinite;
 }
 
 @keyframes rainfall {
   0% {
-   transform: translateY(-20px);
+    transform: translateY(-30px);
     opacity: 0;
   }
-  10% {
+  5% {
     opacity: 1;
   }
   100% {
     transform: translateY(100vh);
-    opacity: 0.3;
+    opacity: 0.5;
   }
 }
 
-// === STORM ===
+// === STORM (faster rain + yellow lightning) ===
+.storm-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.storm-rain {
+  width: 3px;
+  height: 26px;
+  background: linear-gradient(transparent, rgba(80, 140, 240, 0.9));
+  animation: storm-rainfall linear infinite;
+}
+
+@keyframes storm-rainfall {
+  0% {
+    transform: translateY(-30px) skewX(-5deg);
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) skewX(-5deg);
+    opacity: 0.4;
+  }
+}
+
 .lightning {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
   opacity: 0;
-  animation: flash 6s ease-in-out infinite;
 }
 
-@keyframes flash {
-  0%, 90%, 100% { opacity: 0; }
-  92% { opacity: 0.15; }
+.lightning-1 {
+  background: rgba(255, 240, 80, 0.2);
+  animation: flash-1 3s ease-in-out infinite;
+}
+
+.lightning-2 {
+  background: rgba(255, 230, 50, 0.15);
+  animation: flash-2 4.5s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+.lightning-3 {
+  background: rgba(255, 245, 100, 0.18);
+  animation: flash-3 5s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+@keyframes flash-1 {
+  0%, 88%, 100% { opacity: 0; }
+  89% { opacity: 1; }
+  90% { opacity: 0; }
+  91% { opacity: 0.8; }
+  92% { opacity: 0; }
+}
+
+@keyframes flash-2 {
+  0%, 92%, 100% { opacity: 0; }
+  93% { opacity: 0.9; }
   94% { opacity: 0; }
-  96% { opacity: 0.1; }
+  95% { opacity: 0.6; }
+  96% { opacity: 0; }
 }
 
-// === CLOUDS ===
+@keyframes flash-3 {
+  0%, 85%, 100% { opacity: 0; }
+  86% { opacity: 1; }
+  87% { opacity: 0.1; }
+  88% { opacity: 0.7; }
+  89% { opacity: 0; }
+}
+
+// === CLOUDS (faster, moody blue) ===
 .clouds-container {
   width: 100%;
   height: 100%;
@@ -95,10 +156,10 @@
 
 .cloud {
   position: absolute;
-  left: -200px;
-  width: 200px;
-  height: 60px;
-  background: rgba(200, 200, 220, 0.4);
+  left: -220px;
+  width: 220px;
+  height: 65px;
+  background: rgba(100, 140, 200, 0.3);
   border-radius: 50px;
   animation: drift linear infinite;
 
@@ -106,45 +167,65 @@
   &::after {
     content: '';
     position: absolute;
-    background: inherit;
+    background: rgba(90, 130, 190, 0.3);
     border-radius: 50%;
   }
 
   &::before {
-    width: 80px;
-    height: 80px;
-    top: -30px;
+    width: 90px;
+    height: 90px;
+    top: -35px;
     left: 30px;
   }
 
   &::after {
-    width: 100px;
-    height: 70px;
-    top: -20px;
+    width: 110px;
+    height: 75px;
+    top: -25px;
     left: 80px;
   }
 }
 
 @keyframes drift {
   0% {
-    transform: translateX(-200px);
+    transform: translateX(-220px);
   }
   100% {
-    transform: translateX(calc(100vw + 200px));
+    transform: translateX(calc(100vw + 220px));
   }
 }
 
-// === FOG ===
-.weather-fog {
-  background: rgba(200, 200, 210, 0.15);
-  backdrop-filter: blur(1px);
+// === FOG (flashlight effect — cursor clears the fog) ===
+.fog-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.fog-layer {
+  position: absolute;
+  inset: 0;
+  background: rgba(180, 185, 195, 0.65);
+  backdrop-filter: blur(3px);
+  // mask is applied via inline style (radial-gradient follows cursor)
+  -webkit-mask-image: var(--fog-mask);
+  mask-image: var(--fog-mask);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  transition: none;
+}
+
+.fog-flashlight {
+  display: none; // flashlight visual handled by mask now
 }
 
 // === CLEAR (sun rays) ===
 .weather-clear {
   background: radial-gradient(
     ellipse at top right,
-    rgba(255, 223, 100, 0.08) 0%,
+    rgba(255, 223, 100, 0.12) 0%,
     transparent 60%
   );
 }

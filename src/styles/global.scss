@@ -227,6 +227,26 @@ a {
       }
     }
 
+    .dropdown-arrow:hover {
+      background: $accent-light !important;
+    }
+
+    .weather-dropdown {
+      border-color: $border;
+
+      .dropdown-item:hover {
+        background: $accent-light;
+      }
+
+      .dropdown-item.selected {
+        background: $accent-light;
+      }
+
+      .live-badge {
+        background: $accent !important;
+      }
+    }
+
     .navbar-social a:hover {
       color: $accent;
     }
