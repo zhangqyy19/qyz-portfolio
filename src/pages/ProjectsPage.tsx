@@ -4,9 +4,35 @@ import { faPython, faReact } from '@fortawesome/free-brands-svg-icons';
 import { faRobot } from '@fortawesome/free-solid-svg-icons';
 import '../styles/ProjectsPage.scss';
 
-const labelsFirst = ["Python", "Java", "C++", "HTML", "CSS", "R", "SQL"];
-const labelsSecond = ["Git", "GitHub Actions", "Linux", "React", "Flask"];
-const labelsThird = ["OpenAI", "Google Gemini", "Hugging Face", "Qwen"];
+interface SkillLink {
+  label: string;
+  url: string;
+}
+
+const labelsFirst: SkillLink[] = [
+  { label: "Python", url: "https://www.python.org/" },
+  { label: "Java", url: "https://dev.java/" },
+  { label: "C++", url: "https://isocpp.org/" },
+  { label: "HTML", url: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+  { label: "CSS", url: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+  { label: "R", url: "https://www.r-project.org/" },
+  { label: "SQL", url: "https://www.w3schools.com/sql/" }
+];
+
+const labelsSecond: SkillLink[] = [
+  { label: "Git", url: "https://git-scm.com/doc" },
+  { label: "GitHub Actions", url: "https://docs.github.com/en/actions" },
+  { label: "Linux", url: "https://www.kernel.org/" },
+  { label: "React", url: "https://react.dev/" },
+  { label: "Flask", url: "https://flask.palletsprojects.com/" }
+];
+
+const labelsThird: SkillLink[] = [
+  { label: "OpenAI", url: "https://platform.openai.com/docs" },
+  { label: "Google Gemini", url: "https://ai.google.dev/" },
+  { label: "Hugging Face", url: "https://huggingface.co/docs" },
+  { label: "Qwen", url: "https://qwen.readthedocs.io/" }
+];
 
 const ProjectsPage: React.FC = () => {
   return (
@@ -28,8 +54,10 @@ const ProjectsPage: React.FC = () => {
                 using modern technologies such as React and Flask.
               </p>
               <div className="chips-wrapper">
-                {labelsFirst.map((label, index) => (
-                  <span key={index} className="chip">{label}</span>
+                {labelsFirst.map((item, index) => (
+                  <a key={index} href={item.url} target="_blank" rel="noreferrer" className="chip chip-link">
+                    {item.label}
+                  </a>
                 ))}
               </div>
             </div>
@@ -44,8 +72,10 @@ const ProjectsPage: React.FC = () => {
                 automation to support successful project delivery.
               </p>
               <div className="chips-wrapper">
-                {labelsSecond.map((label, index) => (
-                  <span key={index} className="chip">{label}</span>
+                {labelsSecond.map((item, index) => (
+                  <a key={index} href={item.url} target="_blank" rel="noreferrer" className="chip chip-link">
+                    {item.label}
+                  </a>
                 ))}
               </div>
             </div>
@@ -60,8 +90,10 @@ const ProjectsPage: React.FC = () => {
                 solutions to empower intelligent decision making.
               </p>
               <div className="chips-wrapper">
-                {labelsThird.map((label, index) => (
-                  <span key={index} className="chip">{label}</span>
+                {labelsThird.map((item, index) => (
+                  <a key={index} href={item.url} target="_blank" rel="noreferrer" className="chip chip-link">
+                    {item.label}
+                  </a>
                 ))}
               </div>
             </div>

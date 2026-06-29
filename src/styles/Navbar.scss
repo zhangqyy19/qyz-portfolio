@@ -32,15 +32,84 @@ $gray-800: #262626;
     }
   }
 
-  .navbar-logo {
+  .navbar-weather {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    user-select: none;
     font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: $gray-800;
-    text-decoration: none;
 
     &:hover {
+      background: $purple-100;
+    }
+
+    .weather-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: $gray-800;
+      letter-spacing: 0.03em;
+    }
+
+    .weather-time {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $gray-800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .weather-temp {
+      font-size: 0.85rem;
+      font-weight: 500;
       color: $purple-500;
+    }
+
+    .weather-icon {
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+
+      &.active {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.4));
+      }
+    }
+
+    .weather-loading {
+      font-size: 0.85rem;
+      color: $gray-800;
+    }
+
+    .toggle-dot {
+      width: 28px;
+      height: 16px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.12);
+      position: relative;
+      transition: background 0.3s ease;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: white;
+        transition: transform 0.3s ease, background 0.3s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      }
+
+      &.on {
+        background: $purple-400;
+
+        &::after {
+          transform: translateX(12px);
+        }
+      }
     }
   }
 
@@ -56,6 +125,7 @@ $gray-800: #262626;
   .nav-link {
     padding: 8px 16px;
     border-radius: 10px;
+    font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
     font-weight: 500;
     color: $gray-800;

@@ -70,11 +70,8 @@ a {
 
 .page-wrapper {
   flex: 1;
-  padding: 80px 0 40px;
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 100px 0 40px;
+  min-height: calc(100vh - 72px);
 }
 
 .page-content {
@@ -130,6 +127,19 @@ a {
   font-size: 0.85rem;
   font-weight: 500;
   margin: 4px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &.chip-link {
+    cursor: pointer;
+
+    &:hover {
+      background: $purple-500;
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(168, 85, 247, 0.25);
+    }
+  }
 }
 
 .btn-primary {
@@ -186,4 +196,230 @@ a {
   &:hover {
     background: $purple-300;
   }
+}
+
+// ===== WEATHER THEMES =====
+// Mixin for overriding all purple-accented elements
+@mixin weather-theme($bg, $navbar-bg, $border, $accent, $accent-light, $accent-gradient) {
+  background-color: $bg;
+  transition: background-color 0.5s ease, color 0.3s ease;
+
+  .navbar {
+    background: $navbar-bg;
+    border-bottom-color: $border;
+
+    .nav-link.active, .nav-link:hover {
+      background: $accent-light;
+      color: $accent;
+    }
+
+    .navbar-weather {
+      .weather-temp {
+        color: $accent;
+      }
+
+      &:hover {
+        background: $accent-light !important;
+      }
+
+      .toggle-dot.on {
+        background: $accent !important;
+      }
+    }
+
+    .navbar-social a:hover {
+      color: $accent;
+    }
+  }
+
+  .section-title::after {
+    background: $accent-gradient;
+  }
+
+  // About page
+  .subtitle, .typewriter {
+    color: $accent !important;
+  }
+
+  .cursor {
+    background: $accent !important;
+  }
+
+  .about-page .hero-text .social-links a {
+    background: $accent-light !important;
+    color: $accent !important;
+
+    &:hover {
+      background: $accent !important;
+      color: white !important;
+    }
+  }
+
+  .profile-pic {
+    border-color: $border !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .photo-item {
+    background: $accent-light !important;
+    border-color: $border !important;
+    color: $accent !important;
+  }
+
+  .bio-section {
+    border-color: $border;
+  }
+
+  // Experience page
+  .timeline::before {
+    background: linear-gradient(180deg, $accent, $accent-light, transparent) !important;
+  }
+
+  .timeline-item::before {
+    background: $accent !important;
+    box-shadow: 0 0 0 3px $accent-light !important;
+  }
+
+  .timeline-card {
+    border-color: $border;
+
+    &:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .logo-placeholder {
+    background: $accent-light !important;
+    border-color: $border !important;
+    color: $accent !important;
+  }
+
+  .timeline-info .role {
+    color: $accent !important;
+  }
+
+  // Projects page
+  .skill-card {
+    border-color: $border;
+
+    .skill-icon {
+      color: $accent !important;
+    }
+  }
+
+  .chip {
+    background: $accent-light !important;
+    color: $accent !important;
+
+    &.chip-link:hover {
+      background: $accent !important;
+      color: white !important;
+    }
+  }
+
+  .coming-soon {
+    border-color: $border !important;
+  }
+
+  // Contact page
+  .contact-form-card {
+    border-color: $border;
+  }
+
+  .form-group input, .form-group textarea {
+    border-color: $accent-light !important;
+    background: $bg !important;
+
+    &:focus {
+      border-color: $accent !important;
+      background: white !important;
+    }
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, $accent, darken($accent, 10%)) !important;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+  }
+
+  // Buttons
+  .btn-primary {
+    background: linear-gradient(135deg, $accent, darken($accent, 10%));
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.theme-snow {
+  @include weather-theme(
+    #e8f4fd,
+    rgba(232, 244, 253, 0.9),
+    rgba(147, 197, 253, 0.4),
+    #3b82f6,
+    rgba(219, 234, 254, 0.8),
+    linear-gradient(90deg, #3b82f6, #93c5fd)
+  );
+}
+
+.theme-rain {
+  @include weather-theme(
+    #dfe8f0,
+    rgba(223, 232, 240, 0.9),
+    rgba(96, 165, 250, 0.4),
+    #2563eb,
+    rgba(191, 219, 254, 0.6),
+    linear-gradient(90deg, #2563eb, #60a5fa)
+  );
+}
+
+.theme-storm {
+  @include weather-theme(
+    #cbd5e1,
+    rgba(203, 213, 225, 0.92),
+    rgba(71, 85, 105, 0.4),
+    #475569,
+    rgba(226, 232, 240, 0.7),
+    linear-gradient(90deg, #334155, #64748b)
+  );
+
+  .card, .bio-section, .timeline-card, .skill-card, .contact-form-card {
+    background: rgba(255, 255, 255, 0.92);
+  }
+}
+
+.theme-cloudy {
+  @include weather-theme(
+    #eef2f7,
+    rgba(238, 242, 247, 0.9),
+    rgba(148, 163, 184, 0.3),
+    #64748b,
+    rgba(226, 232, 240, 0.6),
+    linear-gradient(90deg, #64748b, #94a3b8)
+  );
+}
+
+.theme-clear {
+  @include weather-theme(
+    #fffbeb,
+    rgba(255, 251, 235, 0.9),
+    rgba(251, 191, 36, 0.3),
+    #d97706,
+    rgba(254, 243, 199, 0.7),
+    linear-gradient(90deg, #f59e0b, #fbbf24)
+  );
+}
+
+.theme-fog {
+  @include weather-theme(
+    #f1f5f9,
+    rgba(241, 245, 249, 0.9),
+    rgba(156, 163, 175, 0.3),
+    #6b7280,
+    rgba(229, 231, 235, 0.6),
+    linear-gradient(90deg, #6b7280, #9ca3af)
+  );
 }
