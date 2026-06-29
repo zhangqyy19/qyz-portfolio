@@ -59,14 +59,6 @@ $gray-900: #171717;
   .timeline-item {
     position: relative;
     margin-bottom: 40px;
-    animation: fadeInUp 0.5s ease forwards;
-    opacity: 0;
-
-    @for $i from 1 through 10 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{$i * 0.1}s;
-      }
-    }
 
     // Dot on timeline
     &::before {

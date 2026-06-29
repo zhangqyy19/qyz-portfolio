@@ -3,6 +3,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import profilePic from "../images/circprof.png";
+import RandomQuote from '../components/RandomQuote';
 import '../styles/AboutPage.scss';
 
 const AboutPage: React.FC = () => {
@@ -128,6 +129,11 @@ const AboutPage: React.FC = () => {
               Add Photo
             </div>
           </div>
+        </div>
+
+        {/* Quote Section */}
+        <div className="quote-section">
+          <RandomQuote />
         </div>
       </div>
     </div>

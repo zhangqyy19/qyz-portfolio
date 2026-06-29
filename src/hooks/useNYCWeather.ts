@@ -24,6 +24,7 @@ function wmoToWeatherType(code: number): { type: WeatherType; description: strin
 export function useNYCWeather() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [nycTime, setNycTime] = useState<string>('');
+  const [nycDate, setNycDate] = useState<string>('');
 
   // Update NYC time every second
   useEffect(() => {
@@ -35,7 +36,14 @@ export function useNYCWeather() {
         minute: '2-digit',
         hour12: true
       });
+      const nycDateStr = now.toLocaleDateString('en-US', {
+        timeZone: 'America/New_York',
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric'
+      });
       setNycTime(nycTimeStr);
+      setNycDate(nycDateStr);
     };
 
     updateTime();
@@ -71,5 +79,5 @@ export function useNYCWeather() {
     return () => clearInterval(interval);
   }, []);
 
-  return { weather, nycTime };
+  return { weather, nycTime, nycDate };
 }

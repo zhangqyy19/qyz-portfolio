@@ -173,4 +173,11 @@ $gray-900: #171717;
       }
     }
   }
+
+  // Quote section - standalone at bottom
+  .quote-section {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid $purple-100;
+  }
 }

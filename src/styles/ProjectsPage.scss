@@ -24,7 +24,14 @@ $gray-900: #171717;
 
     h2 {
       font-size: 1.6rem;
-      margin-bottom: 24px;
+      margin-bottom: 8px;
+    }
+
+    .drag-hint {
+      font-size: 0.85rem;
+      color: $gray-500;
+      margin-bottom: 20px;
+      font-style: italic;
     }
 
     .skills-grid {
@@ -43,6 +50,24 @@ $gray-900: #171717;
       padding: 28px;
       border: 1px solid $purple-100;
       text-align: center;
+      cursor: grab;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+      user-select: none;
+
+      &:active {
+        cursor: grabbing;
+      }
+
+      &.dragging {
+        opacity: 0.5;
+        transform: scale(0.95);
+      }
+
+      &.drag-over {
+        border-color: $purple-500;
+        box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+        transform: scale(1.02);
+      }
 
       .skill-icon {
         font-size: 2.5rem;

@@ -31,18 +31,21 @@ function Navigation({parentToChild, modeChange}: any) {
   };
 
   useEffect(() => {
+    const container = document.querySelector('.app-container');
+    if (!container) return;
+
     const handleScroll = () => {
       const navbar = document.getElementById("navigation");
       if (navbar) {
-        const scrolled = window.scrollY > navbar.clientHeight;
+        const scrolled = container.scrollTop > navbar.clientHeight;
         setScrolled(scrolled);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    container.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      container.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

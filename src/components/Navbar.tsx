@@ -4,8 +4,11 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { useNYCWeather, WeatherType } from '../hooks/useNYCWeather';
 import { useWeatherTheme } from '../hooks/useWeatherTheme';
+// import { useDarkMode } from '../hooks/useDarkMode';
 import '../styles/Navbar.scss';
 
 const weatherIcons: Record<WeatherType, string> = {
@@ -31,8 +34,9 @@ const allWeatherTypes: WeatherType[] = ['clear', 'cloudy', 'rain', 'snow', 'stor
 const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { weather, nycTime } = useNYCWeather();
+  const { weather, nycTime, nycDate } = useNYCWeather();
   const { activeTheme, toggleTheme, setTheme } = useWeatherTheme();
+  // const { isDark, toggle: toggleDark } = useDarkMode();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -61,6 +65,7 @@ const Navbar: React.FC = () => {
         <div className="navbar-weather-wrapper" ref={dropdownRef}>
           <div className="navbar-weather" onClick={toggleTheme}>
             <span className="weather-label">NYC</span>
+            <span className="weather-date">{nycDate}</span>
             <span className="weather-time">{nycTime}</span>
             {weather && (
               <>
@@ -104,10 +109,14 @@ const Navbar: React.FC = () => {
           <NavLink to="/" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`} end>About</NavLink>
           <NavLink to="/experience" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>Experience</NavLink>
           <NavLink to="/projects" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>Projects</NavLink>
+          <NavLink to="/blog" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>Blog</NavLink>
           <NavLink to="/contact" className={({isActive}) => `nav-link ${isActive ? 'active' : ''}`}>Contact</NavLink>
         </div>
 
         <div className="navbar-social">
+          {/* <button className="dark-mode-toggle" onClick={toggleDark} aria-label="Toggle dark mode">
+            {isDark ? <LightModeIcon /> : <DarkModeIcon />}
+          </button> */}
           <a href="https://github.com/zhangqyy19" target="_blank" rel="noreferrer"><GitHubIcon /></a>
           <a href="https://www.linkedin.com/in/qian-yun-zhang-555291346/" target="_blank" rel="noreferrer"><LinkedInIcon /></a>
         </div>

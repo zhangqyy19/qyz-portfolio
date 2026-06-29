@@ -43,6 +43,7 @@ html, body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -66,6 +67,27 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $purple-400 $purple-50;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $purple-50;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $purple-400;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $purple-500;
+  }
 }
 
 .page-wrapper {
@@ -203,6 +225,20 @@ a {
 @mixin weather-theme($bg, $navbar-bg, $border, $accent, $accent-light, $accent-gradient) {
   background-color: $bg;
   transition: background-color 0.5s ease, color 0.3s ease;
+  scrollbar-color: $accent $bg;
+
+  &::-webkit-scrollbar-track {
+    background: $bg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $accent;
+    border-radius: 4px;
+
+    &:hover {
+      background: darken($accent, 10%);
+    }
+  }
 
   .navbar {
     background: $navbar-bg;
@@ -372,6 +408,134 @@ a {
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     }
   }
+
+  // Back to top
+  .back-to-top {
+    border-color: $border;
+    color: $accent;
+
+    &:hover {
+      background: $accent;
+      color: white;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // Chatbot theme
+  --chatbot-accent: #{$accent};
+  --chatbot-accent-dark: #{darken($accent, 10%)};
+  --chatbot-accent-light: #{$accent-light};
+
+  .chatbot-toggle {
+    background: $accent;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    &:hover {
+      background: darken($accent, 10%);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .chatbot-window .chatbot-header {
+    background: $accent;
+  }
+
+  .chatbot-window .chatbot-messages .chatbot-msg.user .msg-bubble {
+    background: $accent;
+  }
+
+  .chatbot-window .chatbot-input button {
+    background: $accent;
+    &:hover:not(:disabled) {
+      background: darken($accent, 10%);
+    }
+  }
+
+  .chatbot-window .chatbot-input input:focus {
+    border-color: $accent;
+  }
+
+  .chatbot-window .chatbot-messages {
+    scrollbar-color: $accent transparent;
+
+    &::-webkit-scrollbar-thumb {
+      background: $accent;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: darken($accent, 10%);
+    }
+  }
+
+  // Blog page
+  .blog-page {
+    --blog-accent: #{$accent};
+    --blog-border: #{$border};
+    --blog-border-light: #{$accent-light};
+    --blog-tag-bg: #{$accent-light};
+  }
+
+  // Command Palette
+  .command-palette {
+    border-color: $border;
+
+    .command-input-wrapper {
+      border-bottom-color: $border;
+
+      .command-icon {
+        color: $accent;
+        background: $accent-light;
+        border-color: $border;
+      }
+
+      .esc-hint {
+        background: $accent-light;
+        border-color: $border;
+      }
+    }
+
+    .command-results {
+      .command-result-item {
+        &.selected, &:hover {
+          background: $accent-light;
+        }
+      }
+
+      .result-group-label {
+        color: $accent;
+      }
+    }
+}
+
+  // Quotes carousel
+  .quote-carousel {
+    background: linear-gradient(135deg, $accent-light, white) !important;
+    border-color: $border !important;
+
+    .carousel-arrow {
+      color: $border;
+
+      &:hover {
+        color: $accent;
+        background: $accent-light;
+      }
+    }
+
+    .quote-author {
+      color: $accent !important;
+    }
+
+    .carousel-dots .dot {
+      background: $border;
+
+      &.active {
+        background: $accent;
+      }
+
+      &:hover:not(.active) {
+        background: $accent;
+      }
+    }
+  }
 }
 
 .theme-snow {
@@ -442,4 +606,147 @@ a {
     rgba(229, 231, 235, 0.6),
     linear-gradient(90deg, #6b7280, #9ca3af)
   );
+}
+
+// ===== DARK MODE =====
+.dark-mode {
+  background-color: #1a1a2e !important;
+  color: #e0e0e0;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #f0f0f0;
+  }
+
+  .navbar {
+    background: rgba(26, 26, 46, 0.95) !important;
+    border-bottom-color: rgba(168, 85, 247, 0.2) !important;
+
+    .nav-link {
+      color: #ccc;
+
+      &.active, &:hover {
+        background: rgba(168, 85, 247, 0.15);
+        color: $purple-300;
+      }
+    }
+
+    .navbar-weather {
+      .weather-label, .weather-date, .weather-time, .weather-temp {
+        color: #f0f0f0 !important;
+      }
+
+      .toggle-dot {
+        background: #aaa !important;
+        &.on { background: $purple-300 !important; }
+      }
+
+      &:hover {
+        background: rgba(168, 85, 247, 0.1) !important;
+      }
+    }
+
+    .dropdown-arrow {
+      color: #ccc !important;
+      &:hover { background: rgba(168, 85, 247, 0.1) !important; }
+    }
+
+    .weather-dropdown {
+      background: #16213e !important;
+      border-color: rgba(168, 85, 247, 0.2) !important;
+
+      .dropdown-item {
+        color: #ddd;
+        &:hover, &.selected { background: rgba(168, 85, 247, 0.15); }
+      }
+
+      .dropdown-reset { color: #aaa; }
+    }
+
+    .navbar-social a {
+      color: #aaa;
+      &:hover { color: $purple-300; }
+    }
+
+    .dark-mode-toggle {
+      color: #f0f0f0 !important;
+
+      &:hover {
+        color: #fbbf24 !important;
+      }
+    }
+  }
+
+  .card, .timeline-card, .skill-card, .contact-form-card, .bio-section {
+    background: #16213e !important;
+    border-color: rgba(168, 85, 247, 0.15) !important;
+    color: #d0d0d0;
+  }
+
+  .timeline::before {
+    background: linear-gradient(180deg, $purple-500, rgba(168, 85, 247, 0.2), transparent) !important;
+  }
+
+  .timeline-item::before {
+    border-color: #1a1a2e !important;
+  }
+
+  .timeline-info h3 {
+    color: #f0f0f0;
+  }
+
+  .timeline-date, .timeline-location, .timeline-description {
+    color: #aaa !important;
+  }
+
+  .chip {
+    background: rgba(168, 85, 247, 0.15) !important;
+    color: $purple-300 !important;
+
+    &.chip-link:hover {
+      background: $purple-500 !important;
+      color: white !important;
+    }
+  }
+
+  .photo-item {
+    background: #16213e !important;
+    border-color: rgba(168, 85, 247, 0.2) !important;
+    color: $purple-300 !important;
+  }
+
+  .quote-carousel {
+    background: linear-gradient(135deg, #16213e, #1a1a2e) !important;
+    border-color: rgba(168, 85, 247, 0.15) !important;
+
+    .quote-text { color: #e0e0e0; }
+    .carousel-arrow { color: rgba(168, 85, 247, 0.4); &:hover { color: $purple-300; } }
+  }
+
+  .coming-soon {
+    border-color: rgba(168, 85, 247, 0.2) !important;
+    color: #aaa;
+  }
+
+  .form-group input, .form-group textarea {
+    background: #16213e !important;
+    border-color: rgba(168, 85, 247, 0.2) !important;
+    color: #e0e0e0 !important;
+
+    &:focus {
+      border-color: $purple-400 !important;
+      background: #1a1a2e !important;
+    }
+  }
+
+  .section-title {
+    color: #f0f0f0;
+  }
+
+  .short-bio, .bio-section p {
+    color: #bbb;
+  }
+
+  // Scrollbar
+  ::-webkit-scrollbar-track { background: #1a1a2e; }
+  ::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.3); }
 }
