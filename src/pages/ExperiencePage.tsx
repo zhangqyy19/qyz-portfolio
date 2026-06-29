@@ -14,22 +14,41 @@ const ExperiencePage: React.FC = () => {
               <div className="timeline-card">
                 <div className="timeline-header">
                   <div className="logo-placeholder">
-                    {/* Add university logo here */}
-                    LOGO
+                    <img src={`${process.env.PUBLIC_URL}/logos/columbia.jpeg`} alt="Columbia University Logo" />
                   </div>
                   <div className="timeline-info">
-                    <h3>University of Michigan</h3>
-                    <span className="role">B.S. in Computer Science</span>
+                    <h3>Columbia University - Columbia College</h3>
+                    <span className="role">B.A. in Computer Science</span>
                   </div>
                 </div>
-                <p className="timeline-date">Expected May 2028</p>
-                <p className="timeline-location">Ann Arbor, MI</p>
+                <p className="timeline-date">Expected April 2029</p>
+                <p className="timeline-location">New York, NY</p>
                 <div className="timeline-description">
                   <ul>
                     <li>GPA: 4.00/4.00</li>
-                    <li>College of Literature, Science, and the Arts</li>
                     <li>Relevant Coursework: Data Structures and Algorithms</li>
-                    <li>Awards: Regents Merit Scholarship</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="timeline-item">
+              <div className="timeline-card">
+                <div className="timeline-header">
+                  <div className="logo-placeholder">
+                    <img src={`${process.env.PUBLIC_URL}/logos/umich2.jpeg`} alt="University of Michigan Logo" />
+                  </div>
+                  <div className="timeline-info">
+                    <h3>University of Michigan - College of Literature, Science, and the Arts</h3>
+                    <span className="role">B.S. in Computer Science</span>
+                  </div>
+                </div>
+                <p className="timeline-date">Aug. 2025 - Apr. 2026</p>
+                <p className="timeline-location">Ann Arbor, MI</p>
+                <div className="timeline-description">
+                  <ul>
+                    <li>Transferred</li>
+                    <li>Relevant Coursework: Data Structures and Algorithms, Discrete Math, Linear Algebra</li>
                   </ul>
                 </div>
               </div>
@@ -41,6 +60,25 @@ const ExperiencePage: React.FC = () => {
         <div className="section-block">
           <h1 className="section-title">Experience</h1>
           <div className="timeline">
+
+            <div className="timeline-item">
+              <div className="timeline-card">
+                <div className="timeline-header">
+                  <div className="logo-placeholder">
+                    <img src={`${process.env.PUBLIC_URL}/logos/jd.webp`} alt="JD Logo" />
+                  </div>
+                  <div className="timeline-info">
+                    <h3>Jingdong Group</h3>
+                    <span className="role">Backend Developer</span>
+                  </div>
+                </div>
+                <p className="timeline-date">Jun. 2026 - Aug. 2026</p>
+                <p className="timeline-location">Beijing, China</p>
+                <div className="timeline-description">
+                  <p>Automation, Data Governance, Statistical Analysis</p>
+                </div>
+              </div>
+            </div>
             
             <div className="timeline-item">
               <div className="timeline-card">
@@ -121,6 +159,7 @@ const ExperiencePage: React.FC = () => {
                 </div>
               </div>
             </div>
+
 
           </div>
         </div>
