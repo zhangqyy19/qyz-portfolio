@@ -1,0 +1,108 @@
+$purple-50: #faf5ff;
+$purple-100: #f3e8ff;
+$purple-400: #c084fc;
+$purple-500: #a855f7;
+$purple-600: #9333ea;
+$gray-800: #262626;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: rgba(250, 245, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $purple-100;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .navbar-inner {
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      padding: 0 20px;
+    }
+  }
+
+  .navbar-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $gray-800;
+    text-decoration: none;
+
+    &:hover {
+      color: $purple-500;
+    }
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: 8px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .nav-link {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $gray-800;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: $purple-100;
+      color: $purple-600;
+    }
+
+    &.active {
+      background: $purple-100;
+      color: $purple-600;
+    }
+  }
+
+  .navbar-social {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    a {
+      color: $gray-800;
+      font-size: 1.2rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $purple-500;
+      }
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: $gray-800;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+}
