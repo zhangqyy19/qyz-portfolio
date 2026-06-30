@@ -103,8 +103,9 @@ $gray-500: #737373;
     }
 
     .reaction-main-text {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 700;
+      font-family: 'Playfair Display', serif;
       margin-bottom: 8px;
     }
 
@@ -833,4 +834,345 @@ $gray-500: #737373;
   .memory-card-game .memory-grid {
     max-width: 100%;
   }
+
+  .zetamac-game {
+    .zetamac-problem {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.zetamac-game {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+
+  &.flash-correct {
+    animation: zetaFlash 0.3s ease;
+  }
+
+  &.flash-wrong .zetamac-input {
+    border-color: #ef4444 !important;
+    background: #fef2f2;
+  }
+
+  .zetamac-intro,
+  .zetamac-results {
+    padding: 40px 20px;
+
+    h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: $gray-500;
+      margin-bottom: 8px;
+    }
+
+    .zetamac-ops {
+      font-size: 1.4rem;
+      letter-spacing: 8px;
+      margin: 16px 0;
+      color: $purple-500;
+    }
+
+    .zetamac-best {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: $gray-500;
+    }
+  }
+
+  .zetamac-results {
+    .zetamac-final-score {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: $purple-500;
+      margin: 12px 0 4px;
+    }
+
+    .zetamac-label {
+      font-size: 0.9rem;
+      color: $gray-500;
+      margin-bottom: 16px;
+    }
+
+    .zetamac-new-best {
+      color: #f59e0b;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+  }
+
+  .zetamac-start-btn {
+    padding: 12px 32px;
+    border-radius: 10px;
+    border: none;
+    background: $purple-500;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: darken($purple-500, 8%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
+  }
+
+  .zetamac-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+
+    .zetamac-timer {
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: #333;
+    }
+
+    .zetamac-score {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $purple-500;
+    }
+
+    .zetamac-streak {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+
+  .zetamac-progress {
+    height: 4px;
+    background: #e5e7eb;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    overflow: hidden;
+
+    .zetamac-progress-bar {
+      height: 100%;
+      background: $purple-500;
+      border-radius: 2px;
+      transition: width 1s linear;
+    }
+  }
+
+  .zetamac-problem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+
+    .zetamac-op {
+      color: $purple-500;
+    }
+
+    .zetamac-eq {
+      color: $gray-500;
+    }
+  }
+
+  .zetamac-input-area {
+    .zetamac-input {
+      width: 140px;
+      padding: 12px 16px;
+      font-size: 1.6rem;
+      font-weight: 600;
+      text-align: center;
+      border: 2px solid $purple-200;
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.2s;
+
+      &:focus {
+        border-color: $purple-500;
+        box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+      }
+
+   /* Hide number input arrows */
+      -moz-appearance: textfield;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+}
+
+@keyframes zetaFlash {
+  0% { background: transparent; }
+  50% { background: #dcfce7; }
+  100% { background: transparent; }
+}
+
+.hanoi-game {
+  max-width: 500px;
+  margin: 0 auto;
+
+  .hanoi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .hanoi-moves {
+      font-size: 1rem;
+
+      .hanoi-optimal {
+        font-size: 0.8rem;
+        color: $gray-500;
+      }
+    }
+
+    .hanoi-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+
+      .hanoi-select {
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: 1px solid $purple-200;
+        font-size: 0.85rem;
+        cursor: pointer;
+        outline: none;
+
+        &:focus {
+          border-color: $purple-400;
+        }
+      }
+
+      .hanoi-reset-btn {
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: 1px solid $purple-200;
+        background: white;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          border-color: $purple-400;
+          background: $purple-100;
+        }
+      }
+    }
+  }
+
+  .hanoi-win {
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #dcfce7;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #16a34a;
+
+    .hanoi-perfect {
+      color: #f59e0b;
+    }
+  }
+
+  .hanoi-board {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    .hanoi-peg-area {
+      flex: 1;
+      min-height: 180px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 8px 4px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+      background: #f9fafb;
+
+      &:hover {
+        background: $purple-100;
+        border-color: $purple-200;
+      }
+
+      &.selected {
+        border-color: $purple-500;
+        background: $purple-100;
+      }
+
+      &.error {
+        animation: hanoiShake 0.4s ease;
+        border-color: #ef4444;
+        background: #fef2f2;
+      }
+
+      .hanoi-peg-rod {
+        position: absolute;
+        top: 12px;
+        bottom: 24px;
+        width: 6px;
+        background: #9ca3af;
+        border-radius: 3px;
+      }
+
+      .hanoi-disks {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        width: 100%;
+        z-index: 1;
+        gap: 3px;
+
+        .hanoi-disk {
+          height: 18px;
+          border-radius: 9px;
+          transition: all 0.15s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+          &.lifted {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+
+      .hanoi-peg-base {
+        width: 90%;
+        height: 6px;
+        background: #6b7280;
+        border-radius: 3px;
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .hanoi-instructions {
+    text-align: center;
+    font-size: 0.8rem;
+    color: $gray-500;
+    line-height: 1.5;
+  }
+}
+
+@keyframes hanoiShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
 }
