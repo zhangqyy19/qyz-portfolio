@@ -4,6 +4,7 @@ import { faPython, faReact } from '@fortawesome/free-brands-svg-icons';
 import { faRobot } from '@fortawesome/free-solid-svg-icons';
 
 import '../styles/ProjectsPage.scss';
+import MiniGames from '../components/games/MiniGames';
 
 interface SkillLink {
   label: string;
@@ -104,10 +105,10 @@ const ProjectsPage: React.FC = () => {
       <div className="page-content projects-page fade-in-up">
         <h1 className="section-title">Skills & Projects</h1>
 
-        {/* Skills Section */}
+      {/* Skills Section */}
         <div className="skills-section">
           <h2>Expertise</h2>
-          <p className="drag-hint">💡 Drag cards to reorder them!</p>
+          <p className="drag-hint">Drag cards to reorder them!</p>
           <div className="skills-grid">
             {cards.map((card, index) => (
               <div
@@ -143,6 +144,9 @@ const ProjectsPage: React.FC = () => {
             <p>Demos coming soon! Stay tuned for exciting project showcases.</p>
           </div>
         </div>
+
+        {/* Mini Games Section */}
+        <MiniGames />
 
       </div>
     </div>

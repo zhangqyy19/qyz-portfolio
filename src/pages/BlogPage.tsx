@@ -119,6 +119,7 @@ const BlogPage: React.FC = () => {
             </article>
           ))}
         </div>
+
       </div>
     </div>
   );
