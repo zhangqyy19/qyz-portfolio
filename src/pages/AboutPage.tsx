@@ -140,11 +140,10 @@ const AboutPage: React.FC = () => {
 
             <div className="snapshot-item reverse">
               <div className="snapshot-image">
-                {/* Add photo here */}
                 <div className="photo-placeholder">Photo 4</div>
               </div>
               <div className="snapshot-text snapshot-spotify">
-              <h3>Good Food & Good Company</h3>
+              <h3>What I've Been Listening To</h3>
               <p>Trying new cuisines and sharing meals with friends is one of my favorite ways to unwind.</p>
               </div>
             </div>
