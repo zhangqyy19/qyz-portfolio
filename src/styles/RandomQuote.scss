@@ -47,23 +47,16 @@ $gray-900: #171717;
   }
 
   .quote-slide {
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 1;
-    transform: translateX(0);
 
-    &.slide-out-right {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-
+    &.slide-out-right,
     &.slide-out-left {
       opacity: 0;
-      transform: translateX(20px);
     }
 
     &.slide-in {
       opacity: 1;
-      transform: translateX(0);
     }
   }
 

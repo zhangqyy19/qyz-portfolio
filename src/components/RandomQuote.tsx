@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import '../styles/RandomQuote.scss';
 
 const quotes = [
@@ -17,27 +17,48 @@ const quotes = [
 const RandomQuote: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
-  const [animating, setAnimating] = useState(false);
+  const [isSliding, setIsSliding] = useState(false);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
-  const goTo = (index: number, dir: 'left' | 'right') => {
-    if (animating) return;
-    setAnimating(true);
-    setDirection(dir);
+  const next = useCallback(() => {
+    if (isSliding) return;
+    setIsSliding(true);
+    setDirection('right');
+    setTimeout(() => {
+      setCurrentIndex(prev => (prev === quotes.length - 1 ? 0 : prev + 1));
+      setIsSliding(false);
+    }, 500);
+  }, [isSliding]);
+
+  const prev = useCallback(() => {
+    if (isSliding) return;
+    setIsSliding(true);
+    setDirection('left');
+    setTimeout(() => {
+      setCurrentIndex(prev => (prev === 0 ? quotes.length - 1 : prev - 1));
+      setIsSliding(false);
+    }, 500);
+  }, [isSliding]);
+
+  const goTo = (index: number) => {
+    if (isSliding || index === currentIndex) return;
+    setIsSliding(true);
+    setDirection(index > currentIndex ? 'right' : 'left');
     setTimeout(() => {
       setCurrentIndex(index);
-      setTimeout(() => setAnimating(false), 300);
-    }, 200);
+      setIsSliding(false);
+    }, 500);
   };
 
-  const prev = () => {
-    const newIndex = currentIndex === 0 ? quotes.length - 1 : currentIndex - 1;
-    goTo(newIndex, 'left');
-  };
-
-  const next = () => {
-    const newIndex = currentIndex === quotes.length - 1 ? 0 : currentIndex + 1;
-    goTo(newIndex, 'right');
-  };
+  // Auto-play
+  useEffect(() => {
+    autoPlayRef.current = setInterval(() => {
+      next();
+    }, 6000);
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [next]);
 
   return (
     <div className="quote-carousel">
@@ -45,7 +66,7 @@ const RandomQuote: React.FC = () => {
         ‹
       </button>
       <div className="carousel-content">
-        <div className={`quote-slide ${animating ? `slide-out-${direction}` : 'slide-in'}`}>
+        <div className={`quote-slide ${isSliding ? `slide-out-${direction}` : 'slide-in'}`}>
           <p className="quote-text">"{quotes[currentIndex].text}"</p>
           <p className="quote-author">— {quotes[currentIndex].author}</p>
         </div>
@@ -58,7 +79,7 @@ const RandomQuote: React.FC = () => {
           <button
             key={idx}
             className={`dot ${idx === currentIndex ? 'active' : ''}`}
-            onClick={() => goTo(idx, idx > currentIndex ? 'right' : 'left')}
+            onClick={() => goTo(idx)}
             aria-label={`Quote ${idx + 1}`}
           />
         ))}

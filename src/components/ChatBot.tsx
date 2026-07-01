@@ -8,7 +8,7 @@ interface Message {
 }
 
 const resumeData: Record<string, string> = {
-  name: "My name is Qian Yun Zhang (张千云). I'm a CS student and developer!",
+  name: "My name is Qian Yun Zhang. I'm a CS student and developer!",
   education: "I'm currently at Columbia University (expected 2029) studying Computer Science with a 4.0 GPA. Previously at University of Michigan.",
   experience: "I've worked at Jingdong Group (Backend Developer), University of Michigan FREE Lab (Research Assistant), Alibaba Group (Software Engineer Intern), and Shenwan Hongyuan Securities (M&A Analyst).",
   skills: "I'm proficient in Python, Java, C++, HTML/CSS, R, SQL. I use tools like Git, GitHub Actions, Linux, React, Flask. I also work with GenAI/LLM platforms like OpenAI, Google Gemini, Hugging Face, and Qwen.",

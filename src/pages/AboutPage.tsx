@@ -4,6 +4,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import profilePic from "../images/circprof.png";
 import RandomQuote from '../components/RandomQuote';
+import SpotifyPlayer from '../components/SpotifyPlayer';
 import '../styles/AboutPage.scss';
 
 const AboutPage: React.FC = () => {
@@ -100,33 +101,52 @@ const AboutPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Casual Photos */}
+        {/* Life Snapshots */}
         <div className="photos-section">
           <h2>Life Snapshots</h2>
-          <div className="photos-grid">
-            <div className="photo-item">
-              {/* Add your casual photo here */}
-              Add Photo
+          <div className="snapshots-list">
+            <div className="snapshot-item">
+              <div className="snapshot-image">
+                {/* Add photo here */}
+                <div className="photo-placeholder">Photo 1</div>
+              </div>
+              <div className="snapshot-text">
+                <h3>Exploring New York</h3>
+                <p>Making the most of life in the city that never sleeps — from late-night study sessions to weekend adventures.</p>
+              </div>
             </div>
-            <div className="photo-item">
-              {/* Add your casual photo here */}
-              Add Photo
+
+            <div className="snapshot-item reverse">
+              <div className="snapshot-image">
+                {/* Add photo here */}
+                <div className="photo-placeholder">Photo 2</div>
+              </div>
+              <div className="snapshot-text">
+                <h3>Building & Creating</h3>
+                <p>Whether it's a hackathon project or a personal side quest, I love bringing ideas to life through code.</p>
+              </div>
             </div>
-            <div className="photo-item">
-              {/* Add your casual photo here */}
-              Add Photo
+
+            <div className="snapshot-item">
+              <div className="snapshot-image">
+                {/* Add photo here */}
+                <div className="photo-placeholder">Photo 3</div>
+              </div>
+              <div className="snapshot-text">
+                <h3>Good Food & Good Company</h3>
+                <p>Trying new cuisines and sharing meals with friends is one of my favorite ways to unwind.</p>
+              </div>
             </div>
-         <div className="photo-item">
-              {/* Add your casual photo here */}
-              Add Photo
-            </div>
-            <div className="photo-item">
-              {/* Add your casual photo here */}
-              Add Photo
-            </div>
-            <div className="photo-item">
-         {/* Add your casual photo here */}
-              Add Photo
+
+            <div className="snapshot-item reverse">
+              <div className="snapshot-image">
+                {/* Add photo here */}
+                <div className="photo-placeholder">Photo 4</div>
+              </div>
+              <div className="snapshot-text snapshot-spotify">
+              <h3>Good Food & Good Company</h3>
+              <p>Trying new cuisines and sharing meals with friends is one of my favorite ways to unwind.</p>
+              </div>
             </div>
           </div>
         </div>

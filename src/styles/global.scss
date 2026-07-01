@@ -318,7 +318,7 @@ a {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
   }
 
-  .photo-item {
+  .photo-item, .photo-placeholder {
     background: $accent-light !important;
     border-color: $border !important;
     color: $accent !important;
@@ -710,7 +710,7 @@ a {
     }
   }
 
-  .photo-item {
+  .photo-item, .photo-placeholder {
     background: #16213e !important;
     border-color: rgba(168, 85, 247, 0.2) !important;
     color: $purple-300 !important;
