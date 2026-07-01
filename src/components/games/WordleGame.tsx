@@ -5,6 +5,8 @@ const WORDS = [
   'ARRAY', 'CLASS', 'LOGIC', 'FETCH', 'STATE',
   'HOOKS', 'PROPS', 'FLASK', 'ROUTE', 'QUERY',
   'TYPES', 'ASYNC', 'AWAIT', 'PARSE', 'CHUNK',
+  'CACHE', 'STACK', 'QUEUE', 'BYTES', 'TRUTH',
+  'EVENT', 'NODES', 'PORTS', 'PROXY', 'MODEM' 
 ];
 
 const MAX_GUESSES = 6;

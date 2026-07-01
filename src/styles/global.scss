@@ -476,6 +476,63 @@ a {
     --blog-tag-bg: #{$accent-light};
   }
 
+  // Mini Games
+  .mini-games-section .game-select-btn {
+    &:hover {
+      border-color: $accent !important;
+      box-shadow: 0 2px 12px rgba($accent, 0.1) !important;
+    }
+
+    &.active {
+      background: $accent !important;
+      border-color: $accent !important;
+      box-shadow: 0 4px 16px rgba($accent, 0.25) !important;
+    }
+  }
+
+  .memory-card-game .memory-card {
+    .card-front {
+      background: linear-gradient(135deg, $accent, darken($accent, 10%)) !important;
+    }
+
+    .card-back {
+      border-color: $accent-light !important;
+    }
+
+    &.matched .card-back {
+      border-color: transparent !important;
+    }
+  }
+
+  .memory-card-game .memory-reset-btn {
+    border-color: $border !important;
+
+    &:hover {
+      border-color: $accent !important;
+      background: $accent-light !important;
+    }
+  }
+
+  .memory-card-game .memory-header .memory-stat .stat-value {
+    color: $accent !important;
+  }
+
+  .zetamac-game {
+    .zetamac-intro .zetamac-ops,
+    .zetamac-results .zetamac-final-score {
+      color: $accent !important;
+    }
+
+    .zetamac-start-btn {
+      background: $accent !important;
+
+      &:hover {
+        background: darken($accent, 8%) !important;
+        box-shadow: 0 4px 12px rgba($accent, 0.3) !important;
+      }
+    }
+  }
+
   // Command Palette
   .command-palette {
     border-color: $border;
