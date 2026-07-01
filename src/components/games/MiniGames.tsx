@@ -7,6 +7,7 @@ import SnakeGame from './SnakeGame';
 import ColorGuessGame from './ColorGuessGame';
 import ZetamacGame from './ZetamacGame';
 import TowersOfHanoiGame from './TowersOfHanoiGame';
+import PongGame from './PongGame';
 import '../../styles/MiniGames.scss';
 
 interface GameInfo {
@@ -25,6 +26,7 @@ const games: GameInfo[] = [
   { id: 'color', title: 'Color Guess', icon: '🎨', component: ColorGuessGame },
   { id: 'zetamac', title: 'Zetamac', icon: '⚡', component: ZetamacGame },
   { id: 'hanoi', title: 'Towers of Hanoi', icon: '🗼', component: TowersOfHanoiGame },
+  { id: 'pong', title: 'Pong', icon: '🏓', component: PongGame },
 ];
 
 const MiniGames: React.FC = () => {
