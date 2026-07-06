@@ -156,6 +156,8 @@ $gray-500: #737373;
 .game-2048 {
   margin-top: 16px;
   max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
 
   .game-2048-header {
     display: flex;
@@ -292,6 +294,9 @@ $gray-500: #737373;
 /* Memory Card Game */
 .memory-card-game {
   margin-top: 16px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
 
   .memory-header {
     display: flex;
@@ -567,6 +572,9 @@ $gray-500: #737373;
 /* Snake Game */
 .snake-game {
   margin-top: 16px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 
   .snake-header {
     display: flex;
@@ -680,6 +688,9 @@ $gray-500: #737373;
 /* Color Guess Game */
 .color-guess-game {
   margin-top: 16px;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
 
   .color-header {
     display: flex;

@@ -7,12 +7,13 @@ const SIZE = 4;
 const createEmptyBoard = (): Board =>
   Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
 
-const addRandomTile = (board: Board): Board => {
+const addRandomTile = (board: Board, excludePositions: [number, number][] = []): Board => {
   const newBoard = board.map(row => [...row]);
+  const excludeSet = new Set(excludePositions.map(([r, c]) => `${r},${c}`));
   const empty: [number, number][] = [];
   for (let r = 0; r < SIZE; r++) {
     for (let c = 0; c < SIZE; c++) {
-      if (newBoard[r][c] === 0) empty.push([r, c]);
+      if (newBoard[r][c] === 0 && !excludeSet.has(`${r},${c}`)) empty.push([r, c]);
     }
   }
   if (empty.length === 0) return newBoard;
@@ -32,10 +33,11 @@ const rotateBoard = (board: Board): Board => {
   return rotated;
 };
 
-const slideLeft = (board: Board): { board: Board; score: number; moved: boolean } => {
+const slideLeft = (board: Board): { board: Board; score: number; moved: boolean; mergedPositions: [number, number][] } => {
   let score = 0;
   let moved = false;
   const newBoard = createEmptyBoard();
+  const mergedPositions: [number, number][] = [];
 
   for (let r = 0; r < SIZE; r++) {
     let col = 0;
@@ -44,6 +46,7 @@ const slideLeft = (board: Board): { board: Board; score: number; moved: boolean 
       if (i + 1 < filtered.length && filtered[i] === filtered[i + 1]) {
         newBoard[r][col] = filtered[i] * 2;
         score += filtered[i] * 2;
+        mergedPositions.push([r, col]);
         i++; // skip next
       } else {
         newBoard[r][col] = filtered[i];
@@ -58,10 +61,23 @@ const slideLeft = (board: Board): { board: Board; score: number; moved: boolean 
     }
   }
 
-  return { board: newBoard, score, moved };
+  return { board: newBoard, score, moved, mergedPositions };
 };
 
-const move = (board: Board, direction: 'left' | 'right' | 'up' | 'down'): { board: Board; score: number; moved: boolean } => {
+const rotatePositionBack = (pos: [number, number], times: number): [number, number] => {
+  let [r, c] = pos;
+  // Rotate back (counter-clockwise) = rotate clockwise (4 - times) % 4
+  const backRotations = (4 - times) % 4;
+  for (let i = 0; i < backRotations; i++) {
+    const newR = c;
+    const newC = SIZE - 1 - r;
+    r = newR;
+    c = newC;
+  }
+  return [r, c];
+};
+
+const move = (board: Board, direction: 'left' | 'right' | 'up' | 'down'): { board: Board; score: number; moved: boolean; mergedPositions: [number, number][] } => {
   let rotated = board;
   let rotations = 0;
   switch (direction) {
@@ -76,7 +92,10 @@ const move = (board: Board, direction: 'left' | 'right' | 'up' | 'down'): { boar
   let finalBoard = result.board;
   for (let i = 0; i < (4 - rotations) % 4; i++) finalBoard = rotateBoard(finalBoard);
 
-  return { board: finalBoard, score: result.score, moved: result.moved };
+  // Rotate merged positions back to original coordinate space
+  const finalMergedPositions = result.mergedPositions.map(pos => rotatePositionBack(pos, rotations));
+
+  return { board: finalBoard, score: result.score, moved: result.moved, mergedPositions: finalMergedPositions };
 };
 
 const isGameOver = (board: Board): boolean => {
@@ -114,7 +133,17 @@ const Game2048: React.FC = () => {
     const result = move(board, direction);
     if (!result.moved) return;
 
-    const newBoard = addRandomTile(result.board);
+    // Find positions that were occupied before but are now empty (freed by merge/slide)
+    const freedPositions: [number, number][] = [];
+    for (let r = 0; r < SIZE; r++) {
+      for (let c = 0; c < SIZE; c++) {
+        if (board[r][c] !== 0 && result.board[r][c] === 0) {
+          freedPositions.push([r, c]);
+        }
+      }
+    }
+
+    const newBoard = addRandomTile(result.board, freedPositions);
     const newScore = score + result.score;
     setBoard(newBoard);
     setScore(newScore);

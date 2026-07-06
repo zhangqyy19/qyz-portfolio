@@ -108,7 +108,7 @@ const ProjectsPage: React.FC = () => {
       {/* Skills Section */}
         <div className="skills-section">
           <h2>Expertise</h2>
-          <p className="drag-hint">Drag cards to reorder them!</p>
+          <p className="drag-hint">Drag the cards to reorder them!</p>
           <div className="skills-grid">
             {cards.map((card, index) => (
               <div
