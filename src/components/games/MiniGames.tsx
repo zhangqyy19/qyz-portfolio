@@ -9,6 +9,10 @@ import ZetamacGame from './ZetamacGame';
 import TowersOfHanoiGame from './TowersOfHanoiGame';
 import PongGame from './PongGame';
 import CutTheRopeGame from './CutTheRopeGame';
+import SlidingPuzzleGame from './SlidingPuzzleGame';
+import SimonSaysGame from './SimonSaysGame';
+import BreakoutGame from './BreakoutGame';
+import FlappyBirdGame from './FlappyBirdGame';
 import '../../styles/MiniGames.scss';
 
 interface GameInfo {
@@ -29,6 +33,10 @@ const games: GameInfo[] = [
   { id: 'hanoi', title: 'Towers of Hanoi', icon: '🗼', component: TowersOfHanoiGame },
   { id: 'pong', title: 'Pong', icon: '🏓', component: PongGame },
   { id: 'cut-the-rope', title: 'Cut the Rope', icon: '✂️', component: CutTheRopeGame },
+  { id: 'sliding-puzzle', title: 'Sliding Puzzle', icon: '🧩', component: SlidingPuzzleGame },
+  { id: 'simon-says', title: 'Simon Says', icon: '🔴', component: SimonSaysGame },
+  { id: 'breakout', title: 'Breakout', icon: '🧱', component: BreakoutGame },
+  { id: 'flappy-bird', title: '', icon: '🐦', component: FlappyBirdGame },
 ];
 
 const MiniGames: React.FC = () => {

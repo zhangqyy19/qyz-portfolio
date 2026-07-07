@@ -31,7 +31,7 @@ $gray-500: #737373;
       gap: 8px;
       padding: 10px 18px;
       border-radius: 12px;
-      border: 1px solid $purple-200;
+      border: 1px solid var(--mg-border, #{$purple-200});
       background: white;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -39,15 +39,15 @@ $gray-500: #737373;
       font-size: 0.9rem;
 
       &:hover {
-        border-color: $purple-400;
-        box-shadow: 0 2px 12px rgba(168, 85, 247, 0.1);
+        border-color: var(--mg-accent, #{$purple-400});
+        box-shadow: 0 2px 12px var(--mg-shadow, rgba(168, 85, 247, 0.1));
       }
 
       &.active {
-        background: $purple-500;
-        border-color: $purple-500;
+        background: var(--mg-accent, #{$purple-500});
+        border-color: var(--mg-accent, #{$purple-500});
         color: white;
-        box-shadow: 0 4px 16px rgba(168, 85, 247, 0.25);
+        box-shadow: 0 4px 16px var(--mg-shadow, rgba(168, 85, 247, 0.25));
       }
 
       .game-icon {
@@ -59,6 +59,43 @@ $gray-500: #737373;
       }
     }
   }
+}
+
+// Weather theme tab colors
+.theme-snow .mini-games-section {
+  --mg-border: #b3d4e8;
+  --mg-accent: #7ba3c9;
+  --mg-shadow: rgba(123, 163, 201, 0.2);
+}
+
+.theme-rain .mini-games-section {
+  --mg-border: #a0b8cc;
+  --mg-accent: #5a7a9e;
+  --mg-shadow: rgba(90, 122, 158, 0.2);
+}
+
+.theme-storm .mini-games-section {
+  --mg-border: #b8a8d4;
+  --mg-accent: #6b5f8a;
+  --mg-shadow: rgba(107, 95, 138, 0.2);
+}
+
+.theme-cloudy .mini-games-section {
+  --mg-border: #bcc6d0;
+  --mg-accent: #7a8a9a;
+  --mg-shadow: rgba(122, 138, 154, 0.2);
+}
+
+.theme-clear .mini-games-section {
+  --mg-border: #f0c9a8;
+  --mg-accent: #d4885a;
+  --mg-shadow: rgba(212, 136, 90, 0.2);
+}
+
+.theme-fog .mini-games-section {
+  --mg-border: #b8c4c8;
+  --mg-accent: #8a9aa0;
+  --mg-shadow: rgba(138, 154, 160, 0.2);
 }
 
 /* Reaction Time Game */

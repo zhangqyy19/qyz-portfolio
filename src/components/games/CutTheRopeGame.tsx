@@ -42,6 +42,30 @@ const LEVELS: Level[] = [
     monsterPos: { x: 200, y: 440 },
     candyStart: { x: 200, y: 110 },
   },
+  {
+    // L4: Two ropes from left side, one from right. Monster offset right.
+    // Cut left ropes to swing candy right toward monster & stars.
+    anchorPoints: [{ x: 60, y: 20 }, { x: 150, y: 40 }, { x: 340, y: 30 }],
+    stars: [
+      { x: 280, y: 200, collected: false },
+      { x: 320, y: 300, collected: false },
+      { x: 200, y: 250, collected: false },
+    ],
+    monsterPos: { x: 300, y: 440 },
+    candyStart: { x: 180, y: 110 },
+  },
+  {
+    // L5: Two ropes spread wide apart, candy high. Monster offset left-bottom.
+    // Cut right rope to swing left, collect stars, then cut left rope to drop into monster.
+    anchorPoints: [{ x: 60, y: 20 }, { x: 340, y: 20 }],
+    stars: [
+      { x: 100, y: 280, collected: false },
+      { x: 160, y: 360, collected: false },
+      { x: 250, y: 200, collected: false },
+    ],
+    monsterPos: { x: 120, y: 450 },
+    candyStart: { x: 200, y: 100 },
+  },
 ];
 
 const W = 400;
