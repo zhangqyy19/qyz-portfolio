@@ -5,6 +5,7 @@ import { faRobot } from '@fortawesome/free-solid-svg-icons';
 
 import '../styles/ProjectsPage.scss';
 import MiniGames from '../components/games/MiniGames';
+import CheatSheets from '../components/CheatSheets';
 
 interface SkillLink {
   label: string;
@@ -17,6 +18,7 @@ interface SkillCardData {
   title: string;
   description: string;
   chips: SkillLink[];
+  cheatCategory: string;
 }
 
 const initialCards: SkillCardData[] = [
@@ -33,7 +35,8 @@ const initialCards: SkillCardData[] = [
       { label: "CSS", url: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
       { label: "R", url: "https://www.r-project.org/" },
       { label: "SQL", url: "https://www.w3schools.com/sql/" }
-    ]
+    ],
+    cheatCategory: 'languages'
   },
   {
     id: 'tools',
@@ -46,7 +49,8 @@ const initialCards: SkillCardData[] = [
       { label: "Linux", url: "https://www.kernel.org/" },
       { label: "React", url: "https://react.dev/" },
       { label: "Flask", url: "https://flask.palletsprojects.com/" }
-    ]
+    ],
+    cheatCategory: 'tools'
   },
   {
     id: 'ai',
@@ -58,7 +62,8 @@ const initialCards: SkillCardData[] = [
       { label: "Google Gemini", url: "https://ai.google.dev/" },
       { label: "Hugging Face", url: "https://huggingface.co/docs" },
       { label: "Qwen", url: "https://qwen.readthedocs.io/" }
-    ]
+    ],
+    cheatCategory: 'llm'
   }
 ];
 
@@ -66,6 +71,7 @@ const ProjectsPage: React.FC = () => {
   const [cards, setCards] = useState<SkillCardData[]>(initialCards);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const [shuffledCards, setShuffledCards] = useState<Set<string>>(new Set());
   const dragNode = useRef<HTMLDivElement | null>(null);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
@@ -100,40 +106,77 @@ const ProjectsPage: React.FC = () => {
     dragNode.current = null;
   };
 
+  const handleCardClick = (cardId: string) => {
+    setShuffledCards(prev => {
+      const next = new Set(prev);
+      if (next.has(cardId)) {
+        next.delete(cardId);
+      } else {
+        next.add(cardId);
+      }
+      return next;
+    });
+  };
+
   return (
     <div className="page-wrapper">
       <div className="page-content projects-page fade-in-up">
         <h1 className="section-title">Skills & Projects</h1>
 
-      {/* Skills Section */}
+        {/* Skills Section */}
         <div className="skills-section">
           <h2>Expertise</h2>
           <p className="drag-hint">Drag the cards to reorder them!</p>
           <div className="skills-grid">
-            {cards.map((card, index) => (
-              <div
-                key={card.id}
-                className={`skill-card ${dragOverIndex === index ? 'drag-over' : ''} ${draggedIndex === index ? 'dragging' : ''}`}
-                draggable
-                onDragStart={(e) => handleDragStart(e, index)}
+            {cards.map((card, index) => {
+              const isShuffled = shuffledCards.has(card.id);
+              return (
+                <div
+                  key={card.id}
+                  className={`card-deck ${isShuffled ? 'shuffled' : ''} ${dragOverIndex === index ? 'drag-over' : ''} ${draggedIndex === index ? 'dragging' : ''}`}
+                  draggable
+                  onDragStart={(e) => handleDragStart(e, index)}
                 onDragOver={(e) => handleDragOver(e, index)}
-                onDragEnd={handleDragEnd}
-                onDragLeave={() => setDragOverIndex(null)}
-              >
-                <div className="skill-icon">
-                  <FontAwesomeIcon icon={card.icon} />
+                  onDragEnd={handleDragEnd}
+                  onDragLeave={() => setDragOverIndex(null)}
+                  onClick={() => handleCardClick(card.id)}
+                >
+                  {/* Back card - Cheat Sheet */}
+                  <div
+                    className="cheat-sheet-card"
+                    onClick={(e) => isShuffled && e.stopPropagation()}
+                  >
+                    <CheatSheets categoryId={card.cheatCategory} />
+                  </div>
+
+                  {/* Front card - Skill Card */}
+                  <div
+                    className="skill-card"
+                    onClick={(e) => !isShuffled && e.stopPropagation()}
+                  >
+                    <div className="skill-icon">
+                      <FontAwesomeIcon icon={card.icon} />
+                    </div>
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                    <div className="chips-wrapper">
+                      {card.chips.map((item, i) => (
+                        <a
+                          key={i}
+                          href={item.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="chip chip-link"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <h3>{card.title}</h3>
-                <p>{card.description}</p>
-                <div className="chips-wrapper">
-                  {card.chips.map((item, i) => (
-                    <a key={i} href={item.url} target="_blank" rel="noreferrer" className="chip chip-link">
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

@@ -1,0 +1,143 @@
+$purple-100: #f3e8ff;
+$purple-200: #e9d5ff;
+$purple-300: #d8b4fe;
+$purple-400: #c084fc;
+$purple-500: #a855f7;
+$gray-600: #525252;
+
+.cs-card-content {
+  text-align: left;
+  width: 100%;
+
+  .cs-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+
+    .cs-card-icon {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $purple-500;
+    }
+
+    h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0 !important;
+    }
+  }
+
+  .cs-sheets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .cs-sheet-item {
+    .cs-sheet-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: 'Inter', sans-serif;
+
+      &:hover {
+        background: $purple-100;
+        border-color: $purple-200;
+      }
+
+      .cs-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: $purple-300;
+        flex-shrink: 0;
+      }
+
+      .cs-sheet-label {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: $gray-600;
+        flex: 1;
+        text-align: left;
+      }
+
+      .cs-indicator {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: $purple-400;
+        line-height: 1;
+      }
+    }
+
+    &.active .cs-sheet-btn {
+      background: $purple-100;
+      border-color: $purple-300;
+
+      .cs-dot {
+        background: $purple-500;
+        box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
+      }
+    }
+
+    .cs-sheet-content {
+      margin: 4px 0 6px 16px;
+      padding: 10px 12px;
+      background: white;
+      border: 1px solid $purple-100;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      animation: csSlideDown 0.2s ease;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+
+        li code {
+          font-family: 'JetBrains Mono', 'Fira Code', monospace;
+          font-size: 0.67rem;
+          color: $gray-600;
+          background: $purple-100;
+          padding: 4px 8px;
+          border-radius: 6px;
+          display: block;
+          border: 1px solid $purple-200;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: pointer;
+          transition: all 0.15s ease;
+
+          &:hover {
+            background: $purple-200;
+          }
+
+          &.expanded {
+            white-space: normal;
+            overflow: visible;
+            text-overflow: unset;
+            background: $purple-200;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes csSlideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

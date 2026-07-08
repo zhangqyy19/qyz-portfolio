@@ -38,21 +38,19 @@ $gray-900: #171717;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
+      align-items: stretch;
 
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
       }
     }
 
-    .skill-card {
-      background: white;
-      border-radius: 20px;
-      padding: 28px;
-      border: 1px solid $purple-100;
-      text-align: center;
+    // Card deck wrapper - stacks two cards (always visible as a deck)
+    .card-deck {
+      position: relative;
+      display: flex;
+      flex-direction: column;
       cursor: grab;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
-      user-select: none;
 
       &:active {
         cursor: grabbing;
@@ -63,37 +61,149 @@ $gray-900: #171717;
         transform: scale(0.95);
       }
 
-      &.drag-over {
+      &.drag-over .skill-card {
         border-color: $purple-500;
         box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
-        transform: scale(1.02);
       }
 
-      .skill-icon {
-        font-size: 2.5rem;
-        color: $purple-500;
-        margin-bottom: 16px;
+      &.drag-over .cheat-sheet-card {
+        border-color: $purple-500;
+        box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
       }
 
-      h3 {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 12px;
+      // Cheat sheet card (behind, peeking out from right & bottom edges)
+      .cheat-sheet-card {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 20px;
+        padding: 24px;
+        border: 1.5px solid darken($purple-200, 12%);
+        background: $purple-200;
+        z-index: 0;
+        cursor: pointer;
+        pointer-events: auto;
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    top 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    left 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    right 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    z-index 0s 0.2s,
+                    background 0.3s ease,
+                    border-color 0.3s ease,
+                    pointer-events 0s 0.2s;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .cs-card-content {
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease;
+        }
       }
 
-      p {
-        color: $gray-500;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        margin-bottom: 16px;
-      }
-
-      .chips-wrapper {
+      // Skill card (front)
+      .skill-card {
+        position: relative;
+        z-index: 2;
+        flex: 1;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: center;
-        gap: 6px;
+        background: white;
+        border-radius: 20px;
+        padding: 28px;
+        border: 1px solid $purple-100;
+        text-align: center;
+        transform: translate(0, 0);
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    box-shadow 0.2s ease,
+                    opacity 0.3s ease,
+                    border-color 0.3s ease,
+                    background 0.3s ease,
+                    z-index 0s 0.2s;
+        user-select: none;
+
+
+        .skill-icon {
+          font-size: 2.5rem;
+          color: $purple-500;
+          margin-bottom: 16px;
+        }
+
+        h3 {
+          font-family: 'Inter', sans-serif;
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 12px;
+        }
+
+        p {
+          color: $gray-500;
+          font-size: 0.9rem;
+          line-height: 1.6;
+          margin-bottom: 16px;
+        }
+
+        .chips-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 6px;
+        }
+      }
+
+      // SHUFFLED STATE: cheat-sheet to front, skill-card becomes back peek
+      &.shuffled {
+        .cheat-sheet-card {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 3;
+          background: white;
+          border-color: $purple-100;
+          cursor: default;
+          pointer-events: auto;
+          transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                      top 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                      left 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                      right 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                      bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                      z-index 0s 0s,
+                      background 0.3s ease,
+                      border-color 0.3s ease,
+                      pointer-events 0s 0s;
+
+          .cs-card-content {
+            opacity: 1;
+            pointer-events: auto;
+            transition: opacity 0.3s ease 0.15s;
+          }
+        }
+
+        // Skill card stays in flow (position: relative) to maintain height,
+        // but visually appears as the "back" peek card
+        .skill-card {
+          z-index: 0;
+          opacity: 1;
+          cursor: pointer;
+          border-color: darken($purple-200, 12%);
+          background: $purple-200;
+          transform: translate(8px, 8px);
+          transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                      z-index 0s 0s,
+                      opacity 0.3s ease,
+                      background 0.3s ease,
+                      border-color 0.3s ease;
+
+          .skill-icon, h3, p, .chips-wrapper {
+            opacity: 0;
+            transition: opacity 0.15s ease;
+          }
+        }
       }
     }
   }

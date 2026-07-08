@@ -357,12 +357,38 @@ a {
   }
 
   // Projects page
+  .card-deck {
+    // Back card (default: cheat-sheet behind) uses theme accent
+    .cheat-sheet-card {
+      border-color: $border !important;
+      background: $accent-light !important;
+    }
+
+    // When shuffled: cheat-sheet is in front - keep white bg, themed border
+    &.shuffled .cheat-sheet-card {
+      background: white !important;
+      border-color: $border !important;
+    }
+
+    // When shuffled: skill-card goes behind - uses theme accent
+    &.shuffled .skill-card {
+      border-color: $border !important;
+      background: $accent-light !important;
+    }
+  }
+
   .skill-card {
-    border-color: $border;
+    border-color: $border !important;
 
     .skill-icon {
       color: $accent !important;
     }
+  }
+
+  .card-deck.drag-over .skill-card,
+  .card-deck.drag-over .cheat-sheet-card {
+    border-color: $accent !important;
+    box-shadow: 0 0 0 3px rgba($accent, 0.2) !important;
   }
 
   .chip {
@@ -370,8 +396,52 @@ a {
     color: $accent !important;
 
     &.chip-link:hover {
-      background: $accent !important;
+      background: $accent-gradient !important;
       color: white !important;
+    }
+  }
+
+  // Cheat sheet themed colors
+  .cs-card-content {
+    .cs-card-icon {
+      color: $accent !important;
+    }
+
+    .cs-sheet-btn {
+      &:hover {
+        background: $accent-light !important;
+        border-color: $border !important;
+      }
+
+      .cs-dot {
+        background: $accent !important;
+      }
+
+      .cs-indicator {
+        color: $accent !important;
+      }
+    }
+
+    .cs-sheet-item.active .cs-sheet-btn {
+      background: $accent-light !important;
+      border-color: $accent !important;
+
+      .cs-dot {
+        box-shadow: 0 0 0 3px rgba($accent, 0.15) !important;
+      }
+    }
+
+    .cs-sheet-content {
+      border-color: $accent-light !important;
+
+      ul li code {
+        background: $accent-light !important;
+        border-color: $border !important;
+
+        &:hover, &.expanded {
+          background: darken($accent-light, 5%) !important;
+        }
+      }
     }
   }
 
@@ -632,6 +702,10 @@ a {
   .card, .bio-section, .timeline-card, .skill-card, .contact-form-card {
     background: rgba(255, 255, 255, 0.92);
   }
+
+  .card-deck.shuffled .cheat-sheet-card {
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
 }
 
 .theme-cloudy {
@@ -739,6 +813,75 @@ a {
     background: #16213e !important;
     border-color: rgba(168, 85, 247, 0.15) !important;
     color: #d0d0d0;
+  }
+
+  .card-deck {
+    .cheat-sheet-card {
+      background: #16213e !important;
+      border-color: rgba(168, 85, 247, 0.15) !important;
+      color: #d0d0d0;
+    }
+
+    &.shuffled .cheat-sheet-card {
+      background: #1a1a2e !important;
+      border-color: rgba(168, 85, 247, 0.15) !important;
+      color: #d0d0d0;
+    }
+
+    &.shuffled .skill-card {
+      background: #16213e !important;
+      border-color: rgba(168, 85, 247, 0.15) !important;
+      color: #d0d0d0;
+    }
+  }
+
+  .cs-card-content {
+    .cs-card-icon {
+      color: $purple-300 !important;
+    }
+
+    h3 {
+      color: #f0f0f0 !important;
+    }
+
+    .cs-sheet-btn {
+      &:hover {
+        background: rgba(168, 85, 247, 0.1) !important;
+        border-color: rgba(168, 85, 247, 0.2) !important;
+      }
+
+      .cs-sheet-label {
+        color: #ccc !important;
+      }
+
+      .cs-dot {
+        background: $purple-400 !important;
+      }
+
+      .cs-indicator {
+        color: $purple-300 !important;
+      }
+    }
+
+    .cs-sheet-item.active .cs-sheet-btn {
+      background: rgba(168, 85, 247, 0.15) !important;
+      border-color: $purple-400 !important;
+    }
+
+    .cs-sheet-content {
+      background: #1a1a2e !important;
+      border-color: rgba(168, 85, 247, 0.2) !important;
+
+      ul li code {
+        background: rgba(168, 85, 247, 0.1) !important;
+        border-color: rgba(168, 85, 247, 0.2) !important;
+        color: #d0d0d0 !important;
+
+        &:hover, &.expanded {
+          background: rgba(168, 85, 247, 0.2) !important;
+        }
+      }
+    }
   }
 
   .timeline::before {
