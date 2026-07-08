@@ -1,0 +1,77 @@
+.konami-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  animation: konamiFadeIn 0.3s ease;
+
+  .konami-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(168, 85, 247, 0.95);
+    color: white;
+    padding: 32px 48px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(168, 85, 247, 0.4);
+    animation: konamiPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+  }
+}
+
+.konami-particle {
+  position: fixed;
+  font-size: 2rem;
+  pointer-events: none;
+  animation: konamiFloat 3s ease-out forwards;
+  z-index: 10000;
+}
+
+@keyframes konamiFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes konamiPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes konamiFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-200px) rotate(180deg) scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-400px) rotate(360deg) scale(0.5);
+  }
+}

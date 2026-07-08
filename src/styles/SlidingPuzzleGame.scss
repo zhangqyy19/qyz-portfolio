@@ -1,0 +1,145 @@
+.sliding-puzzle-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.sp-header {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+
+  .sp-stat {
+    font-size: 1rem;
+    color: #444;
+    font-weight: 600;
+  }
+}
+
+.sp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  width: 280px;
+  height: 280px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.sp-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+  background: var(--sp-tile-bg, #7b6b9e);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.2s ease;
+  user-select: none;
+
+  &:hover:not(.empty) {
+    transform: scale(1.05);
+    background: var(--sp-tile-hover, #6a5a8c);
+  }
+
+  &:active:not(.empty) {
+    transform: scale(0.95);
+  }
+
+  &.empty {
+    background: transparent;
+    cursor: default;
+  }
+
+  &.solved {
+    background: var(--sp-tile-solved, #6a9f5b);
+    animation: pop 0.3s ease;
+  }
+}
+
+// Weather theme tile colors
+.theme-snow .sp-tile {
+  --sp-tile-bg: #7ba3c9;
+  --sp-tile-hover: #6590b5;
+  --sp-tile-solved: #6aad6a;
+}
+
+.theme-rain .sp-tile {
+  --sp-tile-bg: #5a7a9e;
+  --sp-tile-hover: #4a6888;
+  --sp-tile-solved: #5a9a5a;
+}
+
+.theme-storm .sp-tile {
+  --sp-tile-bg: #6b5f8a;
+  --sp-tile-hover: #5a4f78;
+  --sp-tile-solved: #5e8e5e;
+}
+
+.theme-cloudy .sp-tile {
+  --sp-tile-bg: #7a8a9a;
+  --sp-tile-hover: #687888;
+  --sp-tile-solved: #6a9a6a;
+}
+
+.theme-clear .sp-tile {
+  --sp-tile-bg: #d4885a;
+  --sp-tile-hover: #c07848;
+  --sp-tile-solved: #6aad5a;
+}
+
+.theme-fog .sp-tile {
+  --sp-tile-bg: #8a9aa0;
+  --sp-tile-hover: #788890;
+  --sp-tile-solved: #6a9a70;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.sp-win {
+  margin-top: 1rem;
+  text-align: center;
+
+  p {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.sp-reset-btn,
+.sp-shuffle-btn {
+  margin-top: 0.8rem;
+  padding: 0.5rem 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  background: none;
+  border: 2px solid #444;
+  border-radius: 20px;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #444;
+    color: #fff;
+  }
+}
+
+.sp-hint {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+}

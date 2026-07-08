@@ -1,0 +1,954 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+// ===== COLOR PALETTE =====
+$purple-50: #faf5ff;
+$purple-100: #f3e8ff;
+$purple-200: #e9d5ff;
+$purple-300: #d8b4fe;
+$purple-400: #c084fc;
+$purple-500: #a855f7;
+$purple-600: #9333ea;
+
+$favicon-pink: #f9e7e8;
+
+$pink-100: #fce7f3;
+$pink-200: #fbcfe8;
+
+$mint-100: #d1fae5;
+$mint-200: #a7f3d0;
+
+$peach-100: #fed7aa;
+$peach-200: #fdba74;
+
+$gray-50: #fafafa;
+$gray-100: #f5f5f5;
+$gray-200: #e5e5e5;
+$gray-300: #d4d4d4;
+$gray-500: #737373;
+$gray-700: #404040;
+$gray-800: #262626;
+$gray-900: #171717;
+
+// ===== GLOBAL RESET =====
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: $purple-50;
+  color: $gray-800;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: $gray-900;
+  line-height: 1.3;
+}
+
+a {
+  text-decoration: none;
+  color: $purple-500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $purple-600;
+  }
+}
+
+// ===== LAYOUT =====
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $purple-400 $purple-50;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $purple-50;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $purple-400;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $purple-500;
+  }
+}
+
+.page-wrapper {
+  flex: 1;
+  padding: 100px 0 40px;
+  min-height: calc(100vh - 72px);
+}
+
+.page-content {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+}
+
+// ===== UTILITY CLASSES =====
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: $gray-900;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, $purple-400, $favicon-pink);
+    border-radius: 2px;
+    margin-top: 12px;
+  }
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08);
+  border: 1px solid $purple-100;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(168, 85, 247, 0.12);
+  }
+}
+
+.chip {
+  display: inline-block;
+  padding: 6px 14px;
+  background: $purple-100;
+  color: $purple-600;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 4px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &.chip-link {
+    cursor: pointer;
+
+    &:hover {
+      background: linear-gradient(135deg, $purple-500, $favicon-pink);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(168, 85, 247, 0.25);
+    }
+  }
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, $purple-400, $favicon-pink);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3);
+    color: white;
+  }
+}
+
+// ===== ANIMATIONS =====
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+// ===== SCROLLBAR =====
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $purple-50;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $purple-200;
+  border-radius: 4px;
+
+  &:hover {
+    background: $purple-300;
+  }
+}
+
+// ===== WEATHER THEMES =====
+// Mixin for overriding all purple-accented elements
+@mixin weather-theme($bg, $navbar-bg, $border, $accent, $accent-light, $accent-gradient) {
+  background-color: $bg;
+  transition: background-color 0.5s ease, color 0.3s ease;
+  scrollbar-color: $accent $bg;
+
+  &::-webkit-scrollbar-track {
+    background: $bg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $accent;
+    border-radius: 4px;
+
+    &:hover {
+      background: darken($accent, 10%);
+    }
+  }
+
+  .navbar {
+    background: $navbar-bg;
+    border-bottom-color: $border;
+
+    .nav-link.active, .nav-link:hover {
+      background: $accent-light;
+      color: $accent;
+    }
+
+    .navbar-weather {
+      .weather-temp {
+        color: $accent;
+      }
+
+      &:hover {
+        background: $accent-light !important;
+      }
+
+      .toggle-dot.on {
+        background: $accent !important;
+      }
+    }
+
+    .dropdown-arrow:hover {
+      background: $accent-light !important;
+    }
+
+    .weather-dropdown {
+      border-color: $border;
+
+      .dropdown-item:hover {
+        background: $accent-light;
+      }
+
+      .dropdown-item.selected {
+        background: $accent-light;
+      }
+
+      .live-badge {
+        background: $accent !important;
+      }
+    }
+
+    .navbar-social a:hover {
+      color: $accent;
+    }
+  }
+
+  .section-title::after {
+    background: $accent-gradient;
+  }
+
+  // About page
+  .subtitle, .typewriter {
+    color: $accent !important;
+  }
+
+  .cursor {
+    background: $accent !important;
+  }
+
+  .about-page .hero-text .social-links a {
+    background: $accent-light !important;
+    color: $accent !important;
+
+    &:hover {
+      background: $accent !important;
+      color: white !important;
+    }
+  }
+
+  .profile-pic {
+    border-color: $border !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .photo-item, .photo-placeholder {
+    background: $accent-light !important;
+    border-color: $border !important;
+    color: $accent !important;
+  }
+
+  .bio-section {
+    border-color: $border;
+  }
+
+  // Experience page
+  .timeline::before {
+    background: linear-gradient(180deg, $accent, $accent-light, transparent) !important;
+  }
+
+  .timeline-item::before {
+    background: $accent !important;
+    box-shadow: 0 0 0 3px $accent-light !important;
+  }
+
+  .timeline-card {
+    border-color: $border;
+
+    &:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .logo-placeholder {
+    background: $accent-light !important;
+    border-color: $border !important;
+    color: $accent !important;
+  }
+
+  .timeline-info .role {
+    color: $accent !important;
+  }
+
+  // Projects page
+  .card-deck {
+    // Back card (default: cheat-sheet behind) uses theme accent
+    .cheat-sheet-card {
+      border-color: $border !important;
+      background: $accent-light !important;
+    }
+
+    // When shuffled: cheat-sheet is in front - keep white bg, themed border
+    &.shuffled .cheat-sheet-card {
+      background: white !important;
+      border-color: $border !important;
+    }
+
+    // When shuffled: skill-card goes behind - uses theme accent
+    &.shuffled .skill-card {
+      border-color: $border !important;
+      background: $accent-light !important;
+    }
+  }
+
+  .skill-card {
+    border-color: $border !important;
+
+    .skill-icon {
+      color: $accent !important;
+    }
+  }
+
+  .card-deck.drag-over .skill-card,
+  .card-deck.drag-over .cheat-sheet-card {
+    border-color: $accent !important;
+    box-shadow: 0 0 0 3px rgba($accent, 0.2) !important;
+  }
+
+  .chip {
+    background: $accent-light !important;
+    color: $accent !important;
+
+    &.chip-link:hover {
+      background: $accent-gradient !important;
+      color: white !important;
+    }
+  }
+
+  // Cheat sheet themed colors
+  .cs-card-content {
+    .cs-card-icon {
+      color: $accent !important;
+    }
+
+    .cs-sheet-btn {
+      &:hover {
+        background: $accent-light !important;
+        border-color: $border !important;
+      }
+
+      .cs-dot {
+        background: $accent !important;
+      }
+
+      .cs-indicator {
+        color: $accent !important;
+      }
+    }
+
+    .cs-sheet-item.active .cs-sheet-btn {
+      background: $accent-light !important;
+      border-color: $accent !important;
+
+      .cs-dot {
+        box-shadow: 0 0 0 3px rgba($accent, 0.15) !important;
+      }
+    }
+
+    .cs-sheet-content {
+      border-color: $accent-light !important;
+
+      ul li code {
+        background: $accent-light !important;
+        border-color: $border !important;
+
+        &:hover, &.expanded {
+          background: darken($accent-light, 5%) !important;
+        }
+      }
+    }
+  }
+
+  .coming-soon {
+    border-color: $border !important;
+  }
+
+  // Contact page
+  .contact-form-card {
+    border-color: $border;
+  }
+
+  .form-group input, .form-group textarea {
+    border-color: $accent-light !important;
+    background: $bg !important;
+
+    &:focus {
+      border-color: $accent !important;
+      background: white !important;
+    }
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, $accent, darken($accent, 10%)) !important;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+    }
+  }
+
+  // Buttons
+  .btn-primary {
+    background: linear-gradient(135deg, $accent, darken($accent, 10%));
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  // Back to top
+  .back-to-top {
+    border-color: $border;
+    color: $accent;
+
+    &:hover {
+      background: $accent;
+      color: white;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // Chatbot theme
+  --chatbot-accent: #{$accent};
+  --chatbot-accent-dark: #{darken($accent, 10%)};
+  --chatbot-accent-light: #{$accent-light};
+
+  .chatbot-toggle {
+    background: $accent;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    &:hover {
+      background: darken($accent, 10%);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .chatbot-window .chatbot-header {
+    background: $accent;
+  }
+
+  .chatbot-window .chatbot-messages .chatbot-msg.user .msg-bubble {
+    background: $accent;
+  }
+
+  .chatbot-window .chatbot-input button {
+    background: $accent;
+    &:hover:not(:disabled) {
+      background: darken($accent, 10%);
+    }
+  }
+
+  .chatbot-window .chatbot-input input:focus {
+    border-color: $accent;
+  }
+
+  .chatbot-window .chatbot-messages {
+    scrollbar-color: $accent transparent;
+
+    &::-webkit-scrollbar-thumb {
+      background: $accent;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: darken($accent, 10%);
+    }
+  }
+
+  // Blog page
+  .blog-page {
+    --blog-accent: #{$accent};
+    --blog-border: #{$border};
+    --blog-border-light: #{$accent-light};
+    --blog-tag-bg: #{$accent-light};
+  }
+
+  // Mini Games
+  .mini-games-section .game-select-btn {
+    &:hover {
+      border-color: $accent !important;
+      box-shadow: 0 2px 12px rgba($accent, 0.1) !important;
+    }
+
+    &.active {
+      background: $accent !important;
+      border-color: $accent !important;
+      box-shadow: 0 4px 16px rgba($accent, 0.25) !important;
+    }
+  }
+
+  .memory-card-game .memory-card {
+    .card-front {
+      background: linear-gradient(135deg, $accent, darken($accent, 10%)) !important;
+    }
+
+    .card-back {
+      border-color: $accent-light !important;
+    }
+
+    &.matched .card-back {
+      border-color: transparent !important;
+    }
+  }
+
+  .memory-card-game .memory-reset-btn {
+    border-color: $border !important;
+
+    &:hover {
+      border-color: $accent !important;
+      background: $accent-light !important;
+    }
+  }
+
+  .memory-card-game .memory-header .memory-stat .stat-value {
+    color: $accent !important;
+  }
+
+  .zetamac-game {
+    .zetamac-intro .zetamac-ops,
+    .zetamac-results .zetamac-final-score {
+      color: $accent !important;
+    }
+
+    .zetamac-start-btn {
+      background: $accent !important;
+
+      &:hover {
+        background: darken($accent, 8%) !important;
+        box-shadow: 0 4px 12px rgba($accent, 0.3) !important;
+      }
+    }
+  }
+
+  // Command Palette
+  .command-palette {
+    border-color: $border;
+
+    .command-input-wrapper {
+      border-bottom-color: $border;
+
+      .command-icon {
+        color: $accent;
+        background: $accent-light;
+        border-color: $border;
+      }
+
+      .esc-hint {
+        background: $accent-light;
+        border-color: $border;
+      }
+    }
+
+    .command-results {
+      .command-result-item {
+        &.selected, &:hover {
+          background: $accent-light;
+        }
+      }
+
+      .result-group-label {
+        color: $accent;
+      }
+    }
+}
+
+  // Quotes carousel
+  .quote-carousel {
+    background: linear-gradient(135deg, $accent-light, white) !important;
+    border-color: $border !important;
+
+    .carousel-arrow {
+      color: $border;
+
+      &:hover {
+        color: $accent;
+        background: $accent-light;
+      }
+    }
+
+    .quote-author {
+      color: $accent !important;
+    }
+
+    .carousel-dots .dot {
+      background: $border;
+
+      &.active {
+        background: $accent;
+      }
+
+      &:hover:not(.active) {
+        background: $accent;
+      }
+    }
+  }
+}
+
+.theme-snow {
+  @include weather-theme(
+    #e8f4fd,
+    rgba(232, 244, 253, 0.9),
+    rgba(147, 197, 253, 0.4),
+    #3b82f6,
+    rgba(219, 234, 254, 0.8),
+    linear-gradient(90deg, #3b82f6, #93c5fd)
+  );
+}
+
+.theme-rain {
+  @include weather-theme(
+    #dfe8f0,
+    rgba(223, 232, 240, 0.9),
+    rgba(96, 165, 250, 0.4),
+    #2563eb,
+    rgba(191, 219, 254, 0.6),
+    linear-gradient(90deg, #2563eb, #60a5fa)
+  );
+}
+
+.theme-storm {
+  @include weather-theme(
+    #cbd5e1,
+    rgba(203, 213, 225, 0.92),
+    rgba(71, 85, 105, 0.4),
+    #475569,
+    rgba(226, 232, 240, 0.7),
+    linear-gradient(90deg, #334155, #64748b)
+  );
+
+  .card, .bio-section, .timeline-card, .skill-card, .contact-form-card {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .card-deck.shuffled .cheat-sheet-card {
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
+}
+
+.theme-cloudy {
+  @include weather-theme(
+    #eef2f7,
+    rgba(238, 242, 247, 0.9),
+    rgba(148, 163, 184, 0.3),
+    #64748b,
+    rgba(226, 232, 240, 0.6),
+    linear-gradient(90deg, #64748b, #94a3b8)
+  );
+}
+
+.theme-clear {
+  @include weather-theme(
+    #fffbeb,
+    rgba(255, 251, 235, 0.9),
+    rgba(251, 191, 36, 0.3),
+    #d97706,
+    rgba(254, 243, 199, 0.7),
+    linear-gradient(90deg, #f59e0b, #fbbf24)
+  );
+}
+
+.theme-fog {
+  @include weather-theme(
+    #f1f5f9,
+    rgba(241, 245, 249, 0.9),
+    rgba(156, 163, 175, 0.3),
+    #6b7280,
+    rgba(229, 231, 235, 0.6),
+    linear-gradient(90deg, #6b7280, #9ca3af)
+  );
+}
+
+// ===== DARK MODE =====
+.dark-mode {
+  background-color: #1a1a2e !important;
+  color: #e0e0e0;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #f0f0f0;
+  }
+
+  .navbar {
+    background: rgba(26, 26, 46, 0.95) !important;
+    border-bottom-color: rgba(168, 85, 247, 0.2) !important;
+
+    .nav-link {
+      color: #ccc;
+
+      &.active, &:hover {
+        background: rgba(168, 85, 247, 0.15);
+        color: $purple-300;
+      }
+    }
+
+    .navbar-weather {
+      .weather-label, .weather-date, .weather-time, .weather-temp {
+        color: #f0f0f0 !important;
+      }
+
+      .toggle-dot {
+        background: #aaa !important;
+        &.on { background: $purple-300 !important; }
+      }
+
+      &:hover {
+        background: rgba(168, 85, 247, 0.1) !important;
+      }
+    }
+
+    .dropdown-arrow {
+      color: #ccc !important;
+      &:hover { background: rgba(168, 85, 247, 0.1) !important; }
+    }
+
+    .weather-dropdown {
+      background: #16213e !important;
+      border-color: rgba(168, 85, 247, 0.2) !important;
+
+      .dropdown-item {
+        color: #ddd;
+        &:hover, &.selected { background: rgba(168, 85, 247, 0.15); }
+      }
+
+      .dropdown-reset { color: #aaa; }
+    }
+
+    .navbar-social a {
+      color: #aaa;
+      &:hover { color: $purple-300; }
+    }
+
+    .dark-mode-toggle {
+      color: #f0f0f0 !important;
+
+      &:hover {
+        color: #fbbf24 !important;
+      }
+    }
+  }
+
+  .card, .timeline-card, .skill-card, .contact-form-card, .bio-section {
+    background: #16213e !important;
+    border-color: rgba(168, 85, 247, 0.15) !important;
+    color: #d0d0d0;
+  }
+
+  .card-deck {
+    .cheat-sheet-card {
+      background: #16213e !important;
+      border-color: rgba(168, 85, 247, 0.15) !important;
+      color: #d0d0d0;
+    }
+
+    &.shuffled .cheat-sheet-card {
+      background: #1a1a2e !important;
+      border-color: rgba(168, 85, 247, 0.15) !important;
+      color: #d0d0d0;
+    }
+
+    &.shuffled .skill-card {
+      background: #16213e !important;
+      border-color: rgba(168, 85, 247, 0.15) !important;
+      color: #d0d0d0;
+    }
+  }
+
+  .cs-card-content {
+    .cs-card-icon {
+      color: $purple-300 !important;
+    }
+
+    h3 {
+      color: #f0f0f0 !important;
+    }
+
+    .cs-sheet-btn {
+      &:hover {
+        background: rgba(168, 85, 247, 0.1) !important;
+        border-color: rgba(168, 85, 247, 0.2) !important;
+      }
+
+      .cs-sheet-label {
+        color: #ccc !important;
+      }
+
+      .cs-dot {
+        background: $purple-400 !important;
+      }
+
+      .cs-indicator {
+        color: $purple-300 !important;
+      }
+    }
+
+    .cs-sheet-item.active .cs-sheet-btn {
+      background: rgba(168, 85, 247, 0.15) !important;
+      border-color: $purple-400 !important;
+    }
+
+    .cs-sheet-content {
+      background: #1a1a2e !important;
+      border-color: rgba(168, 85, 247, 0.2) !important;
+
+      ul li code {
+        background: rgba(168, 85, 247, 0.1) !important;
+        border-color: rgba(168, 85, 247, 0.2) !important;
+        color: #d0d0d0 !important;
+
+        &:hover, &.expanded {
+          background: rgba(168, 85, 247, 0.2) !important;
+        }
+      }
+    }
+  }
+
+  .timeline::before {
+    background: linear-gradient(180deg, $purple-500, rgba(168, 85, 247, 0.2), transparent) !important;
+  }
+
+  .timeline-item::before {
+    border-color: #1a1a2e !important;
+  }
+
+  .timeline-info h3 {
+    color: #f0f0f0;
+  }
+
+  .timeline-date, .timeline-location, .timeline-description {
+    color: #aaa !important;
+  }
+
+  .chip {
+    background: rgba(168, 85, 247, 0.15) !important;
+    color: $purple-300 !important;
+
+    &.chip-link:hover {
+      background: $purple-500 !important;
+      color: white !important;
+    }
+  }
+
+  .photo-item, .photo-placeholder {
+    background: #16213e !important;
+    border-color: rgba(168, 85, 247, 0.2) !important;
+    color: $purple-300 !important;
+  }
+
+  .quote-carousel {
+    background: linear-gradient(135deg, #16213e, #1a1a2e) !important;
+    border-color: rgba(168, 85, 247, 0.15) !important;
+
+    .quote-text { color: #e0e0e0; }
+    .carousel-arrow { color: rgba(168, 85, 247, 0.4); &:hover { color: $purple-300; } }
+  }
+
+  .coming-soon {
+    border-color: rgba(168, 85, 247, 0.2) !important;
+    color: #aaa;
+  }
+
+  .form-group input, .form-group textarea {
+    background: #16213e !important;
+    border-color: rgba(168, 85, 247, 0.2) !important;
+    color: #e0e0e0 !important;
+
+    &:focus {
+      border-color: $purple-400 !important;
+      background: #1a1a2e !important;
+    }
+  }
+
+  .section-title {
+    color: #f0f0f0;
+  }
+
+  .short-bio, .bio-section p {
+    color: #bbb;
+  }
+
+  // Scrollbar
+  ::-webkit-scrollbar-track { background: #1a1a2e; }
+  ::-webkit-scrollbar-thumb { background: rgba(168, 85, 247, 0.3); }
+}

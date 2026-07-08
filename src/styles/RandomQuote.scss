@@ -1,0 +1,106 @@
+$purple-50: #faf5ff;
+$purple-100: #f3e8ff;
+$purple-200: #e9d5ff;
+$purple-300: #d8b4fe;
+$purple-500: #a855f7;
+$gray-400: #a1a1aa;
+$gray-500: #737373;
+$gray-900: #171717;
+
+.quote-carousel {
+  background: linear-gradient(135deg, $purple-50, white);
+  border-radius: 20px;
+  padding: 40px 24px 32px;
+  border: 1px solid $purple-100;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 160px;
+
+  .carousel-arrow {
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    color: $purple-200;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 50%;
+    transition: color 0.2s ease, background 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+
+    &:hover {
+      color: $purple-500;
+      background: $purple-50;
+    }
+  }
+
+  .carousel-content {
+    flex: 1;
+    overflow: hidden;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quote-slide {
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+
+    &.slide-out-right,
+    &.slide-out-left {
+      opacity: 0;
+    }
+
+    &.slide-in {
+      opacity: 1;
+    }
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: $gray-900;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .quote-author {
+    font-size: 0.9rem;
+    color: $purple-500;
+    font-weight: 500;
+  }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: none;
+      background: $purple-200;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s ease, transform 0.2s ease;
+
+      &.active {
+        background: $purple-500;
+        transform: scale(1.3);
+      }
+
+      &:hover:not(.active) {
+        background: $purple-300;
+      }
+    }
+  }
+}

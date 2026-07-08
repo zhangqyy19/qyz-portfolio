@@ -1,48 +1,63 @@
-import React, {useState, useEffect} from "react";
-import {
-  Main,
-  Timeline,
-  Expertise,
-  Project,
-  Contact,
-  Navigation,
-  Footer,
-  About
-} from "./components";
-import FadeIn from './components/FadeIn';
-import './index.scss';
-//import './Global.scss'
-
+import React, { useState } from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import CommandPalette from "./components/CommandPalette";
+import BackToTop from "./components/BackToTop";
+import WeatherOverlay from "./components/WeatherOverlay";
+import KonamiEasterEgg from "./components/KonamiEasterEgg";
+import ChatBot from "./components/ChatBot";
+import AboutPage from "./pages/AboutPage";
+import ExperiencePage from "./pages/ExperiencePage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ContactPage from "./pages/ContactPage";
+import TypingGamePage from "./pages/TypingGamePage";
+import BlogPage from "./pages/BlogPage";
+import { useNYCWeather, WeatherType } from "./hooks/useNYCWeather";
+import { WeatherThemeContext } from "./hooks/useWeatherTheme";
+// import { DarkModeContext, useDarkModeState } from "./hooks/useDarkMode";
+import './styles/global.scss';
 
 function App() {
-    const [mode, setMode] = useState<string>('dark');
+  const { weather } = useNYCWeather();
+  const [activeTheme, setActiveTheme] = useState<WeatherType | null>(null);
+  // const darkMode = useDarkModeState();
 
-    const handleModeChange = () => {
-        if (mode === 'dark') {
-            setMode('light');
-        } else {
-            setMode('dark');
-        }
+  const toggleTheme = () => {
+    if (activeTheme) {
+      setActiveTheme(null);
+    } else if (weather) {
+      setActiveTheme(weather.weatherType);
     }
+  };
 
-    useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-      }, []);
+  const setTheme = (theme: WeatherType | null) => {
+    setActiveTheme(theme);
+  };
 
-    return (
-    <div className={`main-container ${mode === 'dark' ? 'dark-mode' : 'light-mode'}`}>
-        <Navigation parentToChild={{mode}} modeChange={handleModeChange}/>
-        <FadeIn transitionDuration={700}>
-            <Main/>
-            <About/>
-            <Expertise/>
-            <Timeline/>
-            <Project/>
-            <Contact/>
-        </FadeIn>
-        <Footer />
-    </div>
-    );
+  const weatherType = weather?.weatherType || null;
+
+  return (
+    <WeatherThemeContext.Provider value={{ activeTheme, toggleTheme, setTheme, weatherType }}>
+      <Router>
+        <div className={`app-container ${activeTheme ? `theme-${activeTheme}` : ''}`}>
+          <CommandPalette />
+          <BackToTop />
+          <KonamiEasterEgg />
+          <ChatBot />
+          <Navbar />
+          <WeatherOverlay />
+          <Routes>
+            <Route path="/" element={<AboutPage />} />
+            <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/typing" element={<TypingGamePage />} />
+          </Routes>
+        </div>
+      </Router>
+    </WeatherThemeContext.Provider>
+  );
 }
 
 export default App;

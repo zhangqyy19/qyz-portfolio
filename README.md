@@ -20,6 +20,82 @@ View the [Demo](https://yujisatojr.github.io/react-portfolio-template/).
 ✅ Highly customizable multi-component layout  
 ✅ Built with modern technologies (React, TypeScript, JavaScript, and SCSS)  
 
+## Project Structure
+
+Below is a tree view of the project to help you find and modify everything:
+
+```
+qyz-portfolio/
+├── public/                     # Static assets served as-is
+│   ├── logos/                  # Company/school logos (experience section)
+│   ├── index.html              # HTML entry point (page title, meta tags)
+│   ├── favicon.ico             # Browser tab icon
+│   └── manifest.json           # PWA manifest
+│
+├── src/
+│   ├── assets/images/          # Background images & project mockups
+│   ├── images/                 # Profile photos
+│   │
+│   ├── components/             # Reusable UI components
+│   │   ├── Navbar.tsx          # Navigation bar
+│   │   ├── BackToTop.tsx       # Scroll-to-top button
+│   │   ├── ChatBot.tsx         # AI chatbot widget
+│   │   ├── CommandPalette.tsx  # Cmd+K command palette
+│   │   ├── KonamiEasterEgg.tsx # Konami code easter egg
+│   │   ├── RandomQuote.tsx     # Random quote display
+│   │   ├── SpotifyPlayer.tsx   # Spotify embed player
+│   │   ├── WeatherOverlay.tsx  # Weather overlay widget
+│   │   └── games/             # Mini-games (Snake, 2048, Pong, etc.)
+│   │
+│   ├── hooks/                  # Custom React hooks
+│   │   ├── useDarkMode.ts      # Dark/light theme toggle
+│   │   ├── useNYCWeather.ts    # Weather data fetching
+│   │   ├── useScrollReveal.ts  # Scroll animation hook
+│   │   └── useWeatherTheme.ts  # Weather-based theming
+│   │
+│   ├── pages/                  # Main page sections
+│   │   ├── AboutPage.tsx       # About/intro section
+│   │   ├── BlogPage.tsx        # Blog posts section
+│   │   ├── ContactPage.tsx     # Contact form/info
+│   │   ├── ExperiencePage.tsx  # Work & education timeline
+│   │   ├── ProjectsPage.tsx    # Portfolio projects showcase
+│   │   └── TypingGamePage.tsx  # Typing game page
+│   │
+│   ├── styles/                 # SCSS stylesheets (one per component/page)
+│   │   ├── global.scss         # Global styles & CSS variables
+│   │   ├── Navbar.scss
+│   │   ├── AboutPage.scss
+│   │   ├── ProjectsPage.scss
+│   │   ��── ExperiencePage.scss
+│   │   ├── BlogPage.scss
+│   │   ├── ContactPage.scss
+│   │   └── ...                 # Other component styles
+│   │
+│   ├── App.tsx                 # Root app component (routing & layout)
+│   ├── index.tsx               # React entry point
+│   └── index.scss              # Base styles
+│
+├── package.json                # Dependencies & scripts
+├── tsconfig.json               # TypeScript configuration
+└── README.md                   # This file
+```
+
+### Where to modify what
+
+| What you want to change | Where to look |
+|---|---|
+| Personal info, bio, skills | `src/pages/AboutPage.tsx` |
+| Work/education experience | `src/pages/ExperiencePage.tsx` |
+| Portfolio projects | `src/pages/ProjectsPage.tsx` |
+| Blog posts | `src/pages/BlogPage.tsx` |
+| Contact info | `src/pages/ContactPage.tsx` |
+| Navigation links | `src/components/Navbar.tsx` |
+| Profile photo | `src/images/` |
+| Project mockup images | `src/assets/images/` |
+| Company/school logos | `public/logos/` |
+| Colors, fonts, themes | `src/styles/global.scss` |
+| Page title & meta tags | `public/index.html` |
+
 ## Quick Setup
 
 1. Ensure you have [Node.js](https://nodejs.org/) installed. Check your installation by running:
