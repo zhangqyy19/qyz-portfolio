@@ -1,18 +1,16 @@
 {
   "files": {
-    "main.css": "/qyz-portfolio/static/css/main.33a9051d.css",
-    "main.js": "/qyz-portfolio/static/js/main.eac726b3.js",
+    "main.css": "/qyz-portfolio/static/css/main.9605bb25.css",
+    "main.js": "/qyz-portfolio/static/js/main.c32df060.js",
     "static/js/453.b05d8aa5.chunk.js": "/qyz-portfolio/static/js/453.b05d8aa5.chunk.js",
     "static/media/circprof.png": "/qyz-portfolio/static/media/circprof.43d6e531c931caa66908.png",
-    "static/media/bg-light.png": "/qyz-portfolio/static/media/bg-light.bac0efb485244a522981.png",
-    "static/media/bg-dark.png": "/qyz-portfolio/static/media/bg-dark.f420c6b8458af72de935.png",
     "index.html": "/qyz-portfolio/index.html",
-    "main.33a9051d.css.map": "/qyz-portfolio/static/css/main.33a9051d.css.map",
-    "main.eac726b3.js.map": "/qyz-portfolio/static/js/main.eac726b3.js.map",
+    "main.9605bb25.css.map": "/qyz-portfolio/static/css/main.9605bb25.css.map",
+    "main.c32df060.js.map": "/qyz-portfolio/static/js/main.c32df060.js.map",
     "453.b05d8aa5.chunk.js.map": "/qyz-portfolio/static/js/453.b05d8aa5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.33a9051d.css",
-    "static/js/main.eac726b3.js"
+    "static/css/main.9605bb25.css",
+    "static/js/main.c32df060.js"
   ]
 }
