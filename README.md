@@ -104,7 +104,6 @@ qyz-portfolio/
 | Chatbot behavior | `src/components/ChatBot.tsx` |
 | Command palette actions | `src/components/CommandPalette.tsx` |
 | Weather overlay | `src/components/WeatherOverlay.tsx` |
-| Spotify embed | `src/components/SpotifyPlayer.tsx` |
 | Mini-games | `src/components/games/` |
 | Profile photo | `src/images/` |
 | Project mockup images | `src/assets/images/` |
