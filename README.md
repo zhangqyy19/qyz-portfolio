@@ -24,7 +24,7 @@ My personal portfolio website — a place to showcase my projects, career histor
 - **Konami code easter egg** — enter the classic code for a surprise
 - **Back to top** — smooth scroll-to-top button
 - **Cheat sheets** — quick reference cards
-- **Mini-Games Arcade** - a collection of playable mini-games built from scratch
+- **Mini-Games Arcade** — a collection of playable mini-games built from scratch
 
 ### Technical Highlights
 - Responsive design & mobile-friendly layout
