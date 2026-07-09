@@ -11,7 +11,7 @@ My personal portfolio website — a place to showcase my projects, career histor
 ## Features
 
 ### Core Pages
-- **About** — hero section with animated typing titles, skills overview, Spotify player, and random quotes
+- **About** — hero section with animated typing titles, skills overview, and random quotes
 - **Experience** — vertical timeline of work and education history
 - **Projects** — showcase of personal and professional projects with mockups
 - **Blog** — blog posts section
