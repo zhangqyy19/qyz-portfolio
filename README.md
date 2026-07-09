@@ -24,13 +24,7 @@ My personal portfolio website — a place to showcase my projects, career histor
 - **Konami code easter egg** — enter the classic code for a surprise
 - **Back to top** — smooth scroll-to-top button
 - **Cheat sheets** — quick reference cards
-
-### Mini-Games Arcade
-A collection of playable mini-games built from scratch:
-- Snake, 2048, Pong, Flappy Bird, Breakout
-- Wordle, Memory Cards, Simon Says, Sliding Puzzle
-- Color Guess, Reaction Time, Towers of Hanoi, Zetamac
-- Cut the Rope, Typing Speed Test
+- **Mini-Games Arcade** - a collection of playable mini-games built from scratch
 
 ### Technical Highlights
 - Responsive design & mobile-friendly layout
