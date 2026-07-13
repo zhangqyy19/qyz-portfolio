@@ -163,15 +163,19 @@ const BreakoutGame: React.FC = () => {
     const ctx = canvas.getContext('2d')!;
 
     const handleMouse = (e: MouseEvent) => {
+      const s = stateRef.current;
+      if (!s.running) return;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
-      stateRef.current.paddleX = Math.max(0, Math.min(W - PADDLE_W, x - PADDLE_W / 2));
+      s.paddleX = Math.max(0, Math.min(W - PADDLE_W, x - PADDLE_W / 2));
     };
 
     const handleTouch = (e: TouchEvent) => {
+      const s = stateRef.current;
+      if (!s.running) return;
       const rect = canvas.getBoundingClientRect();
-      const x = e.touches[0].clientX - rect.left;
-      stateRef.current.paddleX = Math.max(0, Math.min(W - PADDLE_W, x - PADDLE_W / 2));
+      const x =e.touches[0].clientX - rect.left;
+      s.paddleX = Math.max(0, Math.min(W - PADDLE_W, x - PADDLE_W / 2));
     };
 
     const handleKey = (e: KeyboardEvent) => {
