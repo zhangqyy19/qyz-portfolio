@@ -11,7 +11,7 @@ My personal portfolio website — a place to showcase my projects, career histor
 ## Features
 
 ### Core Pages
-- **About** — hero section with animated typing titles, skills overview, Spotify player, and random quotes
+- **About** — hero section with animated typing titles, skills overview, and random quotes
 - **Experience** — vertical timeline of work and education history
 - **Projects** — showcase of personal and professional projects with mockups
 - **Blog** — blog posts section
@@ -24,13 +24,7 @@ My personal portfolio website — a place to showcase my projects, career histor
 - **Konami code easter egg** — enter the classic code for a surprise
 - **Back to top** — smooth scroll-to-top button
 - **Cheat sheets** — quick reference cards
-
-### Mini-Games Arcade
-A collection of playable mini-games built from scratch:
-- Snake, 2048, Pong, Flappy Bird, Breakout
-- Wordle, Memory Cards, Simon Says, Sliding Puzzle
-- Color Guess, Reaction Time, Towers of Hanoi, Zetamac
-- Cut the Rope, Typing Speed Test
+- **Mini-Games Arcade** — a collection of playable mini-games built from scratch
 
 ### Technical Highlights
 - Responsive design & mobile-friendly layout
@@ -110,7 +104,6 @@ qyz-portfolio/
 | Chatbot behavior | `src/components/ChatBot.tsx` |
 | Command palette actions | `src/components/CommandPalette.tsx` |
 | Weather overlay | `src/components/WeatherOverlay.tsx` |
-| Spotify embed | `src/components/SpotifyPlayer.tsx` |
 | Mini-games | `src/components/games/` |
 | Profile photo | `src/images/` |
 | Project mockup images | `src/assets/images/` |
