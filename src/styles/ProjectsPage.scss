@@ -214,14 +214,123 @@ $gray-900: #171717;
       margin-bottom: 24px;
     }
 
-    .coming-soon {
-      text-align: center;
-      padding: 60px 20px;
+    .project-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .project-entry {
+      display: grid;
+      grid-template-columns: 300px 1fr;
       background: white;
       border-radius: 20px;
-      border: 2px dashed $purple-200;
-      color: $gray-500;
-      font-size: 1.1rem;
+      border: 1px solid $purple-100;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 34px rgba(168, 85, 247, 0.18);
+        border-color: $purple-400;
+
+        .project-link {
+          color: $purple-500;
+        }
+      }
+
+      // Live snapshot preview (scaled iframe)
+      .project-snapshot {
+        position: relative;
+        overflow: hidden;
+        background: $purple-50;
+        min-height: 200px;
+
+        @media (max-width: 768px) {
+          height: 200px;
+        }
+
+        iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 200%;
+          height: 200%;
+          border: 0;
+          transform: scale(0.5);
+          transform-origin: top left;
+          pointer-events: none;
+        }
+
+        // Transparent overlay so clicks hit the parent link, not the iframe
+        .snapshot-overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+        }
+      }
+
+      .project-body {
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+
+        .project-meta {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-bottom: 12px;
+
+          .project-date {
+            font-size: 0.8rem;
+            color: $gray-500;
+          }
+
+          .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+          }
+
+          .project-tag {
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: $purple-100;
+            color: $purple-600;
+          }
+        }
+
+        h3 {
+          font-family: 'Inter', sans-serif;
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 10px;
+          color: $gray-900;
+        }
+
+        .project-summary {
+          color: $gray-500;
+          font-size: 0.9rem;
+          line-height: 1.6;
+          margin-bottom: 16px;
+          flex: 1;
+        }
+
+        .project-link {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: $purple-600;
+          transition: color 0.2s ease;
+        }
+      }
     }
   }
 }

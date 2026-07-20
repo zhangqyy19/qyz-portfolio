@@ -21,6 +21,26 @@ interface SkillCardData {
   cheatCategory: string;
 }
 
+interface ProjectData {
+  id: string;
+  title: string;
+  date: string;
+  summary: string;
+  url: string;
+  tags: string[];
+}
+
+const projects: ProjectData[] = [
+  {
+    id: 'bunny-crawler',
+    title: 'Bunny Crawler — A Cute Web Crawler',
+    date: 'Jul 2026',
+    summary: 'Enter a website, tell the little bunny what to look for (like h1, .title, meta, or links), and watch it hop across the page to fetch the content for you.',
+    url: 'https://zhangqyy19.github.io/bunny-crawler/',
+    tags: ['JavaScript', 'Web Crawler', 'CSS Selector']
+  }
+];
+
 const initialCards: SkillCardData[] = [
   {
     id: 'languages',
@@ -183,8 +203,43 @@ const ProjectsPage: React.FC = () => {
         {/* Projects Section */}
         <div className="projects-section">
           <h2>Personal Projects</h2>
-          <div className="coming-soon">
-            <p>Demos coming soon! Stay tuned for exciting project showcases.</p>
+          <div className="project-feed">
+            {projects.map((project) => (
+              <a
+                key={project.id}
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                className="project-entry"
+              >
+                {/* Live snapshot preview */}
+                <div className="project-snapshot">
+                  <iframe
+                    src={project.url}
+                    title={project.title}
+                    loading="lazy"
+                    scrolling="no"
+                    tabIndex={-1}
+                  />
+                  <span className="snapshot-overlay" />
+                </div>
+
+                {/* Blog-style body */}
+                <div className="project-body">
+                  <div className="project-meta">
+                    <span className="project-date">{project.date}</span>
+                    <div className="project-tags">
+                      {project.tags.map((tag, i) => (
+                        <span key={i} className="project-tag">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p className="project-summary">{project.summary}</p>
+                  <span className="project-link">Visit project →</span>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
 
