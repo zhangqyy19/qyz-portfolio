@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/qyz-portfolio/static/css/main.9605bb25.css",
-    "main.js": "/qyz-portfolio/static/js/main.c32df060.js",
+    "main.css": "/qyz-portfolio/static/css/main.ec54fde4.css",
+    "main.js": "/qyz-portfolio/static/js/main.2fdc1abd.js",
     "static/js/453.b05d8aa5.chunk.js": "/qyz-portfolio/static/js/453.b05d8aa5.chunk.js",
     "static/media/circprof.png": "/qyz-portfolio/static/media/circprof.43d6e531c931caa66908.png",
     "index.html": "/qyz-portfolio/index.html",
-    "main.9605bb25.css.map": "/qyz-portfolio/static/css/main.9605bb25.css.map",
-    "main.c32df060.js.map": "/qyz-portfolio/static/js/main.c32df060.js.map",
+    "main.ec54fde4.css.map": "/qyz-portfolio/static/css/main.ec54fde4.css.map",
+    "main.2fdc1abd.js.map": "/qyz-portfolio/static/js/main.2fdc1abd.js.map",
     "453.b05d8aa5.chunk.js.map": "/qyz-portfolio/static/js/453.b05d8aa5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9605bb25.css",
-    "static/js/main.c32df060.js"
+    "static/css/main.ec54fde4.css",
+    "static/js/main.2fdc1abd.js"
   ]
 }
